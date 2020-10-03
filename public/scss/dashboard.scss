@@ -1,0 +1,11 @@
+@import './variables.scss';
+
+body {
+  background: $background-color;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+#logo {
+  font-size: large;
+  color: $primary-color;
+}
