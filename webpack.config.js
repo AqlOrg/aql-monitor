@@ -1,43 +1,40 @@
 const path = require('path');
 
 module.exports = {
-  mode: "development",
-  entry: "./src/index.js",
+  mode: process.env.NODE_ENV,
+  entry: './src/index.js',
   output: {
-    filename: "bundle.js",
-    path: path.resolve(__dirname, "./build"),
-    publicPath: "/",
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, './build'),
+    publicPath: '/',
   },
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.js$|jsx/,
         use: {
-          loader: "babel-loader",
+          loader: 'babel-loader',
           options: {
-            presets: [
-              "@babel/preset-env",
-              "@babel/preset-react"
-            ],
-          }
+            presets: ['@babel/preset-env', '@babel/preset-react'],
+          },
         },
         exclude: /node_modules/,
       },
       {
         test: /\.s?css$/,
-        use: ["style-loader", "css-loader", "sass-loader"]
-      }
-    ]
+        use: ['style-loader', 'css-loader', 'sass-loader'],
+      },
+    ],
   },
   resolve: {
-    extensions: [".js", ".jsx"]
+    extensions: ['.js', '.jsx'],
   },
   devServer: {
-    contentBase: path.resolve(__dirname, "./public"),
+    contentBase: path.resolve(__dirname, './public'),
     port: 8080,
     proxy: {
-      "/": "http://localhost:3000"
+      '/': 'http://localhost:3000',
     },
-    publicPath: "/build/"
-  }
+    publicPath: '/build/',
+  },
 };
