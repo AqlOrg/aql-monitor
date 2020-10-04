@@ -1,1 +1,36 @@
 @import './variables.scss';
+
+// DASHBOARD STYLES
+
+#dashboard-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 100px;
+
+  #top-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  #middle-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  #bottom-row {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+
+    #log-line {
+      display: flex;
+      justify-content: start;
+      align-items: center;
+    }
+  }
+}

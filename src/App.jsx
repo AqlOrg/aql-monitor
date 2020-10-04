@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import * as d3 from 'd3';
 // COMPONENT IMPORTS
 import NavBar from './components/NavBar.jsx';
-import PieChart from './components/PieChart.jsx';
+import DashboardContainer from './components/DashboardContainer.jsx';
 // SCSS
 import '../public/scss/application.scss';
 
@@ -25,12 +25,8 @@ function App() {
 
   return (
     <div className="App">
-      <NavBar data={data} />
-      <div id="dashboard-container">
-        <div id="top-row">
-
-        </div>
-      </div>
+      <NavBar />
+      <DashboardContainer data={data} />
     </div>
   );
 }

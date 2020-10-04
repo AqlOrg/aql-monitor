@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import * as d3 from 'd3';
 
-const Pie = (props) => {
+const PieChart = (props) => {
   const ref = useRef(null);
   const createPie = d3
     .pie()
@@ -59,4 +59,4 @@ const Pie = (props) => {
   );
 };
 
-export default Pie;
+export default PieChart;

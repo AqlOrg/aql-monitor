@@ -5,6 +5,13 @@ body {
   background-color: $background-color;
 }
 
+// .app {
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+//   align-items: center;
+// }
+
 // NAVBAR STYLES: LOGO AND USER BUTTON
 #navbar {
   display: flex;
@@ -35,36 +42,4 @@ body {
   }
 }
 
-// DASHBOARD STYLES
-
-#dashboard-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  #top-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  #middle-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  #bottom-row {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-
-    #log-line {
-      display: flex;
-      justify-content: start;
-      align-items: center;
-    }
-  }
-}
+// FOOTER STYLES
