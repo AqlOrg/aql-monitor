@@ -28,7 +28,7 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      width: 65%;
+      width: 65.5%;
       height: 100%;
       border: 1px solid $primary-color;
     }
@@ -43,7 +43,7 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      width: 32%;
+      width: 31.75%;
       height: 100%;
       border: 1px solid $primary-color;
     }
@@ -57,6 +57,55 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 80%;
+    height: 260px;
+    padding-top: 20px;
+
+    #MapContainer {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 31.5%;
+      height: 100%;
+      border: 1px solid $primary-color;
+    }
+
+    #map {
+    }
+
+    #NodeContainer {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 31.5%;
+      height: 100%;
+      border: 1px solid $primary-color;
+    }
+
+    #node {
+    }
+
+    #StatsContainer {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: left;
+      width: 31.5%;
+      height: 100%;
+      border: 1px solid $primary-color;
+
+      p {
+        font-family: Arial, Helvetica, sans-serif;
+        color: $primary-color;
+        font-size: 0.75rem;
+        margin: 10px;
+      }
+    }
+
+    #Stats {
+    }
   }
 
   #bottom-row {

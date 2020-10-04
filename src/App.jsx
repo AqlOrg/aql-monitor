@@ -8,7 +8,7 @@ import '../public/scss/application.scss';
 
 function App() {
   // CREATE DUMMY DATA
-  const generateData = (value, length = 4) =>
+  const generateData = (value, length = 8) =>
     d3.range(length).map((item, index) => ({
       date: index,
       value:

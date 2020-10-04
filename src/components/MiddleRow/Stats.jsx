@@ -4,8 +4,12 @@ import React, { useRef, useEffect, useState } from 'react';
  * Component that renders a Map
  */
 
-function Stats() {
-  return <div id="stats">Stats</div>;
+function Stats(props) {
+  return (
+    <div id="stats">
+      <p>Number of Subscriptions: {props.data.length}</p>
+    </div>
+  );
 }
 
 export default Stats;

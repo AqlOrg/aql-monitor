@@ -11,7 +11,7 @@ const PieChart = (props) => {
     .arc()
     .innerRadius(props.innerRadius)
     .outerRadius(props.outerRadius);
-  const colors = d3.scaleOrdinal(d3.schemeBlues[4]);
+  const colors = d3.scaleOrdinal(d3.schemeBlues[8]);
   const format = d3.format('.2f');
 
   useEffect(() => {
@@ -35,18 +35,18 @@ const PieChart = (props) => {
       .attr('d', createArc)
       .attr('fill', (d, i) => colors(i));
 
-    const text = groupWithUpdate
-      .append('text')
-      .merge(groupWithData.select('text'));
+    // const text = groupWithUpdate
+    //   .append('text')
+    //   .merge(groupWithData.select('text'));
 
-    text
-      .attr('text-anchor', 'middle')
-      .attr('alignment-baseline', 'middle')
-      .attr('transform', (d) => `translate(${createArc.centroid(d)})`)
-      .style('fill', 'black')
-      .style('font-size', '10')
-      .style('text-align', 'center')
-      .text((d) => format(d.value));
+    // text
+    //   .attr('text-anchor', 'middle')
+    //   .attr('alignment-baseline', 'middle')
+    //   .attr('transform', (d) => `translate(${createArc.centroid(d)})`)
+    //   .style('fill', 'black')
+    //   .style('font-size', '10')
+    //   .style('text-align', 'center')
+    //   .text((d) => format(d.value));
   }, [props.data]);
 
   return (
