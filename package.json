@@ -25,6 +25,7 @@
     "graphql": "^15.3.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "resize-observer-polyfill": "^1.5.1",
     "sass": "^1.26.11"
   },
   "devDependencies": {

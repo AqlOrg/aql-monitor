@@ -1,11 +1,143 @@
 @import './variables.scss';
 
-body {
-  background: $background-color;
-  font-family: Georgia, 'Times New Roman', Times, serif;
-}
+// DASHBOARD STYLES
 
-#logo {
-  font-size: large;
-  color: $primary-color;
+#dashboard-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 100px;
+
+  button {
+    border-radius: 10%;
+    background-color: $background-color;
+    color: $primary-color;
+    border: 1px solid $secondary-color;
+    padding: 3, 5;
+    margin-right: 3px;
+    margin-left: 3px;
+  }
+
+  #box-titles {
+    font-family: Arial, Helvetica, sans-serif;
+    color: $primary-color;
+    font-size: 0.8rem;
+    margin-bottom: 10px;
+    align-self: center;
+  }
+
+  #top-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    height: 260px;
+
+    #LineChartContainer {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 65.5%;
+      height: 100%;
+      border: 1px solid $primary-color;
+    }
+
+    .LineChart {
+      overflow: visible;
+      min-width: 400px;
+    }
+
+    #PieChartContainer {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 31.75%;
+      height: 100%;
+      border: 1px solid $primary-color;
+    }
+
+    #PieChart {
+      padding: 15px;
+    }
+  }
+
+  #middle-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    height: 260px;
+    padding-top: 20px;
+
+    #MapContainer {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 31.5%;
+      height: 100%;
+      border: 1px solid $primary-color;
+    }
+
+    #map {
+    }
+
+    #NodeContainer {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 31.5%;
+      height: 100%;
+      border: 1px solid $primary-color;
+    }
+
+    #node {
+      #node-label {
+        color: $primary-color;
+      }
+    }
+
+    #StatsContainer {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: left;
+      width: 31.5%;
+      height: 100%;
+      border: 1px solid $primary-color;
+
+      p {
+        font-family: Arial, Helvetica, sans-serif;
+        color: $primary-color;
+        font-size: 0.75rem;
+        margin: 10px;
+      }
+    }
+
+    #Stats {
+    }
+  }
+
+  #bottom-row {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 20px;
+    width: 80%;
+    height: 120px;
+    border: 1px solid $primary-color;
+
+    padding-top: 20px;
+
+    #LogContainer {
+      display: flex;
+      justify-content: start;
+      align-items: center;
+    }
+  }
 }
