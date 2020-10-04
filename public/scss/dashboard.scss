@@ -9,10 +9,48 @@
   align-items: center;
   padding-top: 100px;
 
+  #box-titles {
+    font-family: Arial, Helvetica, sans-serif;
+    color: $primary-color;
+    font-size: 0.8rem;
+    margin-bottom: 10px;
+  }
+
   #top-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 80%;
+    height: 275px;
+
+    #LineChartContainer {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 65%;
+      height: 100%;
+      border: 1px solid $primary-color;
+    }
+
+    .LineChart {
+      overflow: visible;
+      min-width: 400px;
+    }
+
+    #PieChartContainer {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 32%;
+      height: 100%;
+      border: 1px solid $primary-color;
+    }
+
+    #PieChart {
+      padding: 15px;
+    }
   }
 
   #middle-row {

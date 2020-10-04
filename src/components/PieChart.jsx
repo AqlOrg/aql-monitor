@@ -50,7 +50,7 @@ const PieChart = (props) => {
   }, [props.data]);
 
   return (
-    <svg className="pieChart" width={props.width} height={props.height}>
+    <svg id="PieChart" width={props.width} height={props.height}>
       <g
         ref={ref}
         transform={`translate(${props.outerRadius} ${props.outerRadius})`}
