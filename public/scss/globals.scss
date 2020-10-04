@@ -9,15 +9,18 @@ body {
 #navbar {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   position: fixed;
   top: 0px;
   width: 100vw;
   padding-top: 15px;
+  padding-bottom: 15px;
+  // border-bottom: 1px solid $secondary-color;
 
   font-family: Georgia, 'Times New Roman', Times, serif;
 
   #logo {
-    font-size: 30px;
+    font-size: 40px;
     color: $primary-color;
     margin-left: 25px;
   }
@@ -29,5 +32,39 @@ body {
     height: 30px;
     width: 30px;
     margin-right: 25px;
+  }
+}
+
+// DASHBOARD STYLES
+
+#dashboard-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  #top-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  #middle-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  #bottom-row {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+
+    #log-line {
+      display: flex;
+      justify-content: start;
+      align-items: center;
+    }
   }
 }

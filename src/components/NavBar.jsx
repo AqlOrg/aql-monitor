@@ -23,7 +23,6 @@ function Navbar() {
   return (
     <div id="navbar">
       <span id="logo">Aql</span>
-      {/* <div id="name">Welcome, {userName}</div> */}
       <button onClick={() => clickbutton(userName)}>J</button>
     </div>
   );
