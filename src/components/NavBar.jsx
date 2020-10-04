@@ -22,9 +22,9 @@ function Navbar() {
 
   return (
     <div id="navbar">
-      <p id="logo">Aql</p>
-      {/* <div id="name">Welcome, {userName}</div>
-      <button onClick={() => clickbutton(userName)}>Update user</button> */}
+      <span id="logo">Aql</span>
+      {/* <div id="name">Welcome, {userName}</div> */}
+      <button onClick={() => clickbutton(userName)}>J</button>
     </div>
   );
 }

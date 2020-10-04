@@ -4,3 +4,30 @@ html,
 body {
   background-color: $background-color;
 }
+
+// NAVBAR STYLES: LOGO AND USER BUTTON
+#navbar {
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  top: 0px;
+  width: 100vw;
+  padding-top: 15px;
+
+  font-family: Georgia, 'Times New Roman', Times, serif;
+
+  #logo {
+    font-size: 30px;
+    color: $primary-color;
+    margin-left: 25px;
+  }
+
+  button {
+    border-radius: 50%;
+    background-color: $secondary-color;
+    border: none;
+    height: 30px;
+    width: 30px;
+    margin-right: 25px;
+  }
+}
