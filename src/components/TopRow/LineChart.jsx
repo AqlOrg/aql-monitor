@@ -10,7 +10,7 @@ import {
   zoom,
   zoomTransform,
 } from 'd3';
-import useResizeObserver from './useResizeObserver';
+import useResizeObserver from '../useResizeObserver';
 
 /**
  * Component that renders a LineChart
