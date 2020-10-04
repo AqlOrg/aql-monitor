@@ -9,7 +9,7 @@ function PieChartContainer(props) {
         data={props.data}
         width={160}
         height={160}
-        innerRadius={50}
+        innerRadius={0}
         outerRadius={80}
       />
     </div>

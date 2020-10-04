@@ -4,7 +4,7 @@ import Node from './Node.jsx';
 function NodeContainer(props) {
   return (
     <div id="NodeContainer">
-      <div id="box-titles">Resolver Relationships</div>
+      <div id="box-titles">Resolver Latency</div>
       <Node data={props.data} />
     </div>
   );
