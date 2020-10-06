@@ -2,7 +2,8 @@ import React, { useEffect, useRef } from 'react';
 import * as d3 from 'd3';
 
 const PieChart = (props) => {
-  const ref = useRef(null);
+
+  const ref = useRef();
   const createPie = d3
     .pie()
     .value((d) => d.value)
@@ -12,16 +13,16 @@ const PieChart = (props) => {
     .innerRadius(props.innerRadius)
     .outerRadius(props.outerRadius);
   const colors = d3.scaleOrdinal(d3.schemeBlues[8]);
-  const format = d3.format('.2f');
+  const format = d3.format('.0f');
 
   useEffect(() => {
     const data = createPie(props.data);
     const group = d3.select(ref.current);
     const groupWithData = group.selectAll('g.arc').data(data);
 
-    groupWithData.exit().remove();
+    //groupWithData.exit().remove();
 
-    const groupWithUpdate = groupWithData
+    groupWithData
       .enter()
       .append('g')
       .attr('class', 'arc');
@@ -35,18 +36,19 @@ const PieChart = (props) => {
       .attr('d', createArc)
       .attr('fill', (d, i) => colors(i));
 
-    const text = groupWithUpdate
+    const text = groupWithData
       .append('text')
       .merge(groupWithData.select('text'));
 
     text
-      .attr('text-anchor', 'center')
-      .attr('alignment-baseline', 'center')
+      .attr('text-anchor', 'middle')
+      .attr('alignment-baseline', 'middle')
       .attr('transform', (d) => `translate(${createArc.centroid(d)})`)
       .style('fill', 'black')
       .style('font-size', '10')
-      .style('text-align', 'center')
+      .style('text-align', 'middle')
       .text((d) => format(d.value));
+
   }, [props.data]);
 
   return (
