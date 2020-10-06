@@ -34,13 +34,11 @@ function Node() {
   ]);
 
   const [newLinks, setNewLinks] = useState([
-    {"source": "Caql", "target": "Jaql"},
-    {"source": "Caql", "target": "Maql"},
-    {"source": "Maql", "target": "Jaql"},
-    {"source": "Raql", "target": "Caql"},
-    {"source": "Jaql", "target": "Craql"},
+    {"source": "Aql", "target": "Caql"},
     {"source": "Aql", "target": "Jaql"},
-    {"source": "Craql", "target": "Aql"}
+    {"source": "Aql", "target": "Maql"},
+    {"source": "Aql", "target": "Raql"},
+    {"source": "Aql", "target": "Craql"}
   ]);
 
   useEffect(() => {
