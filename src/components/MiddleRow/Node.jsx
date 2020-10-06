@@ -1,73 +1,95 @@
-import React, { useRef, useEffect } from 'react';
-import { select, scaleBand, scaleLinear, max } from 'd3';
+import React, { useRef, useEffect, useState } from 'react';
+import { select, forceSimulation, forceLink, forceManyBody, forceCenter } from 'd3';
 import useResizeObserver from '../useResizeObserver';
 
-function Node({ data }) {
+function Node() {
+
   const svgRef = useRef();
-  const wrapperRef = useRef();
-  const dimensions = useResizeObserver(wrapperRef);
 
-  // will be called initially and on every data change
+  // const [newData, setNewData] = useState({
+  //   nodes: [
+  //     {"name": "Caql"},
+  //     {"name": "Aql"},
+  //     {"name": "Raql"},
+  //     {"name": "Jaql"},
+  //     {"name": "Maql"},
+  //     {"name": "Craql"}
+  //   ],
+  //   links: [
+  //     {"src": "Caql", "trg": "Jaql"},
+  //     {"src": "Craql", "trg": "Maql"},
+  //     {"src": "Maql", "trg": "Jaql"},
+  //     {"src": "Raql", "trg": "Caql"},
+  //     {"src": "Caql", "trg": "Aql"}
+  //   ]
+  // });
+
+  const [newNodes, setNewNodes] = useState([
+    {"name": "Caql"},
+    {"name": "Aql"},
+    {"name": "Raql"},
+    {"name": "Jaql"},
+    {"name": "Maql"},
+    {"name": "Craql"}
+  ]);
+
+  const [newLinks, setNewLinks] = useState([
+    {"source": "Caql", "target": "Jaql"},
+    {"source": "Caql", "target": "Maql"},
+    {"source": "Maql", "target": "Jaql"},
+    {"source": "Raql", "target": "Caql"},
+    {"source": "Jaql", "target": "Craql"},
+    {"source": "Aql", "target": "Jaql"},
+    {"source": "Craql", "target": "Aql"}
+  ]);
+
   useEffect(() => {
+
     const svg = select(svgRef.current);
-    if (!dimensions) return;
 
-    // sorting the data
-    data.sort((a, b) => b.value - a.value);
+    let link = svg.selectAll("line")
+      .data(newLinks)
+      .enter()
+      .append("line")
+      .attr("stroke-width", 1)
+      .style("stroke", "white");
+   
+    let node = svg.selectAll("circle")
+      .data(newNodes)
+      .enter()
+      .append("circle")
+      .attr("r", 5)
+      .attr("fill", "teal");
 
-    const yScale = scaleBand()
-      .paddingInner(0.1)
-      .domain(data.map((value, index) => index)) // [0,1,2,3,4,5]
-      .range([0, dimensions.height]); // [0, 200]
+    let simulation = forceSimulation()
+      .force("link", forceLink().id((d) => d.name))
+      .force("charge", forceManyBody())
+      .force("center", forceCenter(100, 100));
 
-    const xScale = scaleLinear()
-      .domain([0, max(data, (entry) => entry.value)]) // [0, 65 (example)]
-      .range([0, dimensions.width]); // [0, 400 (example)]
+    simulation
+      .nodes(newNodes)
+      .on("tick", ticked);
 
-    // draw the bars
-    svg
-      .selectAll('.bar')
-      .data(data, (entry, index) => entry.name)
-      .join((enter) =>
-        enter.append('rect').attr('y', (entry, index) => yScale(index))
-      )
-      .attr('fill', '#0fa0da')
-      .attr('class', 'bar')
-      .attr('x', 0)
-      .attr('height', yScale.bandwidth())
-      .transition()
-      .attr('width', (entry) => xScale(entry.value))
-      .attr('y', (entry, index) => yScale(index));
+    simulation.force("link").links(newLinks);        
 
-    // draw the labels
-    svg
-      .selectAll('.label')
-      .data(data, (entry, index) => entry.name)
-      .join((enter) =>
-        enter
-          .append('text')
-          .attr(
-            'y',
-            (entry, index) => yScale(index) + yScale.bandwidth() / 2 + 5
-          )
-      )
-      .text((entry) => `(${entry.value})`)
-      .attr('class', 'label')
-      .attr('x', 10)
-      .transition()
-      .attr('y', (entry, index) => yScale(index) + yScale.bandwidth() / 2 + 5);
-  }, [data, dimensions]);
+    function ticked() {
+      link
+          .attr("x1", (d) => d.source.x)
+          .attr("y1", (d) => d.source.y)
+          .attr("x2", (d) => d.target.x)
+          .attr("y2", (d) => d.target.y);
+  
+      node
+          .attr("cx", (d) => d.x)
+          .attr("cy", (d) => d.y);
+    }
+
+  }, [newNodes, newLinks]);
+
+
 
   return (
-    <div
-      id="node-label"
-      ref={wrapperRef}
-      style={{
-        marginBottom: '2rem',
-        fontFamily: 'arial',
-        fontSize: '.7rem',
-      }}
-    >
+    <div>
       <svg ref={svgRef}></svg>
     </div>
   );
