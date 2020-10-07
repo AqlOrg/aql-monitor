@@ -1,6 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { select, forceSimulation, forceLink, forceManyBody, forceCenter } from 'd3';
-import useResizeObserver from '../useResizeObserver';
 
 function Node() {
 
