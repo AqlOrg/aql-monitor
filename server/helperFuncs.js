@@ -1,7 +1,5 @@
-const dummyData = require('./dummyData.json');
 
 //return obj with resolver names as properties and count as value
-
 function resolverStats(data) {
   // create returnObj
   const returnObj = {};
@@ -48,6 +46,19 @@ function mutations(data) {
   const returnArr = [];
   const errorql = {};
   const errorArr = [];
+
+  //create a function that takes an array and returns number
+  function getAvg(array) {
+    let total = 0;
+    if (array.length) {
+      for (let el of array) {
+        total += parseInt(el.latency);
+      }
+      total = total / array.length;
+    }
+    return total;
+  }
+
   for (let el of data.rows) {
     if (!el.error) {
       if (!hashql[el.mutation_id]) {
@@ -83,11 +94,6 @@ function mutations(data) {
     mutObj.expectedAqls = hashql[key][0].expected_subscribers;
     mutObj.dateTime = hashql[key][0].mutation_received_time;
     mutObj.aqls = hashql[key];
-    //avg: for let el of aqls (total+=latency)/(subs)
-    // let total = 0;
-    // for (let el of mutObj.aqls) {
-    //   total += parseInt(el.latency);
-    // }
     mutObj.avgLatency = getAvg(mutObj.aqls);
     //   mutObj.aqls.length > 0 ? total / parseInt(mutObj.aqls.length) : total;
     returnArr.push(mutObj);
@@ -99,18 +105,8 @@ function mutations(data) {
   return [returnArr, errorArr];
 }
 
-//create a function that takes an array and returns number
-function getAvg(array) {
-  let total = 0;
-  if (array.length) {
-    for (let el of array) {
-      total += parseInt(el.latency);
-    }
-    total = total / array.length;
-  }
-  return total;
-}
-
-// console.log(resolverStats(dummyData));
-// console.log(subscriptionHistory(dummyData));
-console.log(mutations(dummyData));
+module.exports = {
+  resolverStats,
+  subscriptionHistory,
+  mutations,
+};
