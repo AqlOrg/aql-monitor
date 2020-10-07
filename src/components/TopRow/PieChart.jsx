@@ -15,7 +15,7 @@ const PieChart = (props) => {
   const colors = d3.interpolateBlues;
 
   useEffect(() => {
-    const data = createPie([{name:"otherResolver", value:200}, {name:"newColor", value:200}, {name:"luckyNumber", value: 300}]);
+    const data = createPie([{name:"otherResolver", value:200}, {name:"newColor", value:200}, {name:"luckyNumber", value: 300},]);
     const group = d3.select(ref.current);
     const groupWithData = group.selectAll('g.arc').data(data);
 

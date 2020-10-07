@@ -3,6 +3,7 @@ import {
   select,
   scaleLinear,
   line,
+  min,
   max,
   curveCardinal,
   axisBottom,
@@ -17,9 +18,12 @@ import useResizeObserver from '../useResizeObserver';
  */
 
 function LineChart(props) {
-  const avgLatency = props.mutationData.map(elt => elt.avgLatency);
-  const subscribers = props.mutationData.map(elt => elt.expectedAqls)
-  console.log(avgLatency);
+  const avgLatency = props.mutationData.map(elt => ({avgL: elt.avgLatency, mutDate: elt.dateTime})); 
+  const subscribers = props.mutationData.map(elt => elt.expectedAqls);
+  const date = props.mutationData.map(elt => elt.dateTime); 
+  console.log(avgLatency);                                  
+  const mutationStartDate = new Date(date[0]);
+  console.log(mutationStartDate);
 
   const svgRef = useRef();
   const wrapperRef = useRef();
@@ -35,7 +39,7 @@ function LineChart(props) {
 
     // scales + line generator
     const xScale = scaleLinear()
-      .domain([0, avgLatency.length - 1])
+      .domain([min(date), max(date)])
       .range([10, width - 10]);
 
     if (currentZoomState) {
@@ -48,7 +52,7 @@ function LineChart(props) {
       .range([height - 10, 10]);
 
     const lineGenerator = line()
-      .x((d, index) => xScale(index))
+      .x((d) => xScale(d))
       .y((d) => yScale(d))
       .curve(curveCardinal);
 
@@ -84,19 +88,19 @@ function LineChart(props) {
     const yAxis = axisLeft(yScale);
     svg.select('.y-axis').style('color', 'white').call(yAxis);
 
-  //   // zoom
-  //   const zoomBehavior = zoom()
-  //     .scaleExtent([0.5, 5])
-  //     .translateExtent([
-  //       [0, 0],
-  //       [width, height],
-  //     ])
-  //     .on('zoom', () => {
-  //       const zoomState = zoomTransform(svg.node());
-  //       setCurrentZoomState(zoomState);
-  //     });
+    // zoom
+    const zoomBehavior = zoom()
+      .scaleExtent([0.5, 5])
+      .translateExtent([
+        [0, 0],
+        [width, height],
+      ])
+      .on('zoom', () => {
+        const zoomState = zoomTransform(svg.node());
+        setCurrentZoomState(zoomState);
+      });
 
-  //   svg.call(zoomBehavior);
+    svg.call(zoomBehavior);
   }, [currentZoomState, avgLatency, dimensions]);
 
   return (
