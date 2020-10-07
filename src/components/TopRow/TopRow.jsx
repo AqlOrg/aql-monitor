@@ -6,8 +6,8 @@ import LineChartContainer from './LineChartContainer.jsx';
 function TopRow(props) {
   return (
     <div id="top-row">
-      <PieChartContainer data={props.data} id="PieChartContainer" />
-      <LineChartContainer data={props.data} id="LineChartContainer" />
+      <PieChartContainer data={props.data} resolverStats={props.resolverStats} id="PieChartContainer" />
+      <LineChartContainer mutationData={props.mutationData} id="LineChartContainer" />
     </div>
   );
 }

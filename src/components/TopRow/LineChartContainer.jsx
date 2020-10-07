@@ -1,16 +1,14 @@
 import React, { useState, useRef, useEffect } from 'react';
 import LineChart from './LineChart.jsx';
 
-function LineChartContainer() {
+function LineChartContainer(props) {
   const [dumData, setData] = useState(
-    Array.from({ length: 200 }, () => Math.round(Math.random() * 100))
+    Array.from({ length: 100 }, () => Math.round(Math.random() * 100))
   );
-
-  console.log('dumdata', dumData);
   return (
     <div id="LineChartContainer">
       <div id="box-titles">Round-Trip</div>
-      <LineChart data={dumData} />
+      <LineChart data={dumData} mutationData={props.mutationData} />
       <br />
       <div className="buttons">
         <button

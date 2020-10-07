@@ -16,8 +16,10 @@ import useResizeObserver from '../useResizeObserver';
  * Component that renders a LineChart
  */
 
-function LineChart({ data, id = 'LineChart' }) {
-  console.log('data', data);
+function LineChart(props) {
+  const avgLatency = props.mutationData.map(elt => elt.avgLatency);
+  const subscribers = props.mutationData.map(elt => elt.expectedAqls)
+  console.log(avgLatency);
 
   const svgRef = useRef();
   const wrapperRef = useRef();
@@ -33,7 +35,7 @@ function LineChart({ data, id = 'LineChart' }) {
 
     // scales + line generator
     const xScale = scaleLinear()
-      .domain([0, data.length - 1])
+      .domain([0, avgLatency.length - 1])
       .range([10, width - 10]);
 
     if (currentZoomState) {
@@ -42,7 +44,7 @@ function LineChart({ data, id = 'LineChart' }) {
     }
 
     const yScale = scaleLinear()
-      .domain([0, max(data)])
+      .domain([0, max(avgLatency)])
       .range([height - 10, 10]);
 
     const lineGenerator = line()
@@ -53,7 +55,7 @@ function LineChart({ data, id = 'LineChart' }) {
     // render the line
     svgContent
       .selectAll('.myLine')
-      .data([data])
+      .data([avgLatency])
       .join('path')
       .attr('class', 'myLine')
       .attr('stroke', 'lightblue')
@@ -62,7 +64,7 @@ function LineChart({ data, id = 'LineChart' }) {
 
     svgContent
       .selectAll('.myDot')
-      .data(data)
+      .data(avgLatency)
       .join('circle')
       .attr('class', 'myDot')
       .attr('stroke', 'lightblue')
@@ -82,31 +84,31 @@ function LineChart({ data, id = 'LineChart' }) {
     const yAxis = axisLeft(yScale);
     svg.select('.y-axis').style('color', 'white').call(yAxis);
 
-    // zoom
-    const zoomBehavior = zoom()
-      .scaleExtent([0.5, 5])
-      .translateExtent([
-        [0, 0],
-        [width, height],
-      ])
-      .on('zoom', () => {
-        const zoomState = zoomTransform(svg.node());
-        setCurrentZoomState(zoomState);
-      });
+  //   // zoom
+  //   const zoomBehavior = zoom()
+  //     .scaleExtent([0.5, 5])
+  //     .translateExtent([
+  //       [0, 0],
+  //       [width, height],
+  //     ])
+  //     .on('zoom', () => {
+  //       const zoomState = zoomTransform(svg.node());
+  //       setCurrentZoomState(zoomState);
+  //     });
 
-    svg.call(zoomBehavior);
-  }, [currentZoomState, data, dimensions]);
+  //   svg.call(zoomBehavior);
+  }, [currentZoomState, avgLatency, dimensions]);
 
   return (
     <React.Fragment>
       <div ref={wrapperRef} style={{ marginBottom: '2rem' }}>
         <svg className="LineChart" ref={svgRef}>
           <defs>
-            <clipPath id={id}>
+            <clipPath id="LineChart">
               <rect x="0" y="0" width="100%" height="100%" />
             </clipPath>
           </defs>
-          <g className="content" clipPath={`url(#${id})`}></g>
+          <g className="content" clipPath={`url(#LineChart)`}></g>
           <g className="x-axis" />
           <g className="y-axis" />
         </svg>
