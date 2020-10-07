@@ -7,7 +7,11 @@ import BottomRow from './BottomRow/BottomRow.jsx';
 function DashboardContainer(props) {
   return (
     <div id="dashboard-container">
-      <TopRow data={props.data} />
+      <TopRow 
+        data={props.data}
+        mutationData={props.mutationData}
+        resolverStats={props.resolverStats}
+      />
       <MiddleRow data={props.data} />
       <BottomRow data={props.data} />
     </div>

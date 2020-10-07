@@ -5,6 +5,8 @@ import NavBar from './components/NavBar.jsx';
 import DashboardContainer from './components/DashboardContainer.jsx';
 // SCSS
 import '../public/scss/application.scss';
+// import new dummy data
+import dummyData from '../dummydata';
 
 function App() {
   // CREATE DUMMY DATA
@@ -14,6 +16,29 @@ function App() {
       value:
         value === null || value === undefined ? Math.random() * 100 : value,
     }));
+
+  let aqlData;
+  
+  // const postData = {
+  //   method: 'POST',
+  //   body: JSON.stringify({}),
+  //   headers: {
+  //     'Content-Type': 'application/json',
+  //   }
+  // };
+
+  // fetch('/api', postData)
+  //   .then(res => res.json())
+  //   .then(data => aqlData = data[0])
+  //   .catch(err => console.log(err));
+
+  // this is just till our end point is set up
+  aqlData = dummyData[0];
+ 
+  // PIE CHART DATA HOOK
+  const [resolverStats, setResolverStats] = useState(aqlData.resolverStats);
+  // LINE GRAPH DATA HOOK/ANY MUTATION STUFF
+  const [mutationData, setMutationData] = useState(aqlData.mutations);
 
   // DATA / SETDATA HOOK
   const [data, setData] = useState(generateData(0));
@@ -26,7 +51,11 @@ function App() {
   return (
     <div className="App">
       <NavBar />
-      <DashboardContainer data={data} />
+      <DashboardContainer
+        data={data}
+        mutationData={mutationData}
+        resolverStats={resolverStats}
+      />
     </div>
   );
 }
