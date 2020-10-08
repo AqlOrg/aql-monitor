@@ -8,7 +8,8 @@ function LineChartContainer(props) {
       <LineChart mutationData={props.mutationData} />
       <br />
       <div className="buttons">
-        <button onClick={() => setData(dumData.filter((value) => value < 35))}>
+        <button
+         onClick={() => setData(dumData.filter((value) => value < 35))}>
           Filter
         </button>
       </div>

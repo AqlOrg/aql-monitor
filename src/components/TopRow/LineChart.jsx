@@ -24,9 +24,6 @@ function LineChart(props) {
   const mutationLatencies = props.mutationData.map(elt => elt.avgLatency);
   const mutationDates = props.mutationData.map(elt => parseInt(elt.dateTime));
   const subscribers = props.mutationData.map(elt => elt.expectedAqls);
-  console.log(avgLatency);
-  console.log(min(mutationDates));
-  console.log(max(mutationDates));
 
   const svgRef = useRef();
   const wrapperRef = useRef();
@@ -109,6 +106,26 @@ function LineChart(props) {
         const zoomState = zoomTransform(svg.node());
         setCurrentZoomState(zoomState);
       });
+    
+    // Add the labels to x and y-axes 
+    svg.append("text")
+      .attr("text-anchor", "end")
+      .attr("transform", "rotate(-90)")
+      .attr("y", -50)
+      .attr("x", -30)
+      .text("Average Latency")
+      .style("font-family", "Arial")
+      .style("font-size", "12px")
+      .style("fill", "white");
+
+      svg.append("text")
+      .attr("text-anchor", "end")
+      .attr("y", 260)
+      .attr("x", 210)
+      .text("Time")
+      .style("font-family", "Arial")
+      .style("font-size", "12px")
+      .style("fill", "white");
 
     svg.call(zoomBehavior);
   }, [currentZoomState, avgLatency, dimensions]);
