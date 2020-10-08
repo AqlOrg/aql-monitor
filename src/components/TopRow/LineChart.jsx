@@ -2,6 +2,7 @@ import React, { useRef, useEffect, useState } from 'react';
 import {
   select,
   scaleLinear,
+  scaleTime,
   line,
   min,
   max,
@@ -9,7 +10,6 @@ import {
   axisBottom,
   axisLeft,
   timeFormat,
-  tickFormat,
   zoom,
   zoomTransform,
 } from 'd3';
@@ -20,10 +20,29 @@ import useResizeObserver from '../useResizeObserver';
  */
 
 function LineChart(props) {
-  const avgLatency = props.mutationData.map(elt => ({avgL: elt.avgLatency, mutationDate: parseInt(elt.dateTime), subscribers: elt.expectedAqls})); 
-  const mutationLatencies = props.mutationData.map(elt => elt.avgLatency);
-  const avgSubscribers = props.mutationData.map(elt => elt.expectedAqls);
-  const mutationDates = props.mutationData.map(elt => parseInt(elt.dateTime));
+  let avgLatency = props.mutationData.map(elt => ({avgL: elt.avgLatency, mutationDate: parseInt(elt.dateTime), subscribers: parseInt(elt.expectedAqls)})); 
+  let mutationLatencies = props.mutationData.map(elt => elt.avgLatency);
+  let avgSubscribers = props.mutationData.map(elt => parseInt(elt.expectedAqls));
+  let mutationDates = props.mutationData.map(elt => parseInt(elt.dateTime));
+
+  mutationDates = mutationDates.slice(0,80);
+  avgLatency = avgLatency.slice(0,80);
+  avgSubscribers = avgSubscribers.slice(0,80);
+  mutationLatencies = mutationLatencies.slice(0,80);
+  // console.log(mutationDates);
+  // console.log(avgLatency.slice(0, 50));
+
+  // console.log(mutationDates);
+
+  for(let i = 0; i < mutationDates.length; i++) {
+    if(mutationDates[i] === mutationDates[i+1]) {
+      console.log('not increasing');
+      console.log(i);
+      console(mutationDates[i]);
+    } else {
+      console.log('we dont fucking know whats going on');
+    }
+  }
 
   const svgRef = useRef();
   const wrapperRef = useRef();
@@ -38,7 +57,7 @@ function LineChart(props) {
       dimensions || wrapperRef.current.getBoundingClientRect();
 
     // scales + line generator
-    const xScale = scaleLinear()
+    const xScale = scaleTime()
       .domain([min(mutationDates), max(mutationDates)])
       .range([0, width]);
 
@@ -52,45 +71,46 @@ function LineChart(props) {
       .range([height - 10, 0]);
 
     const ySubScale = scaleLinear()
-      .domain([0, max(avgSubscribers) + 1])
+      .domain([0, max(avgSubscribers)])
       .range([height - 10, 0]);
 
     const latencyLine = line()
-      .x((d) => xScale(d.mutationDate))
-      .y((d) => yScale(d.avgL))
-      .curve(curveCardinal);
+      .x(d => xScale(d.mutationDate))
+      .y(d => yScale(d.avgL));
+      //.curve(curveCardinal);
 
     const subscriberLine = line()
-    .x((d) => xScale(d.mutationDate))
-    .y((d) => yScale(d.subscribers))
-    .curve(curveCardinal);
+      .x(d => xScale(d.mutationDate))
+      .y(d => ySubScale(d.subscribers));
+      //.curve(curveCardinal);
 
     // render the line
     svgContent
-      .selectAll('.myLine')
+      .append('path')
       .data([avgLatency])
-      .join('path')
       .attr('class', 'myLine')
       .attr('stroke', 'lightblue')
       .attr('fill', 'none')
-      .attr('d', latencyLine)
+      .attr('d', latencyLine);
     
     svgContent
       .append('path')
       .data([avgLatency])
+      .attr('class', 'myLine')
       .style('stroke', 'hotpink')
+      .attr('fill', 'none')
       .attr('d', subscriberLine);
 
-    svgContent
-      .selectAll('.myDot')
-      .data(avgLatency)
-      .join('circle')
-      .attr('class', 'myDot')
-      .attr('stroke', 'lightblue')
-      .attr('r', 2)
-      .attr('fill', 'lightblue')
-      .attr('cx', (d) => xScale(d.mutationDate))
-      .attr('cy', (d) => yScale(d.avgL));
+    // svgContent
+    //   .selectAll('.myDot')
+    //   .data(avgLatency)
+    //   .join('circle')
+    //   .attr('class', 'myDot')
+    //   .attr('stroke', 'lightblue')
+    //   .attr('r', 2)
+    //   .attr('fill', 'lightblue')
+    //   .attr('cx', (d) => xScale(d.mutationDate))
+    //   .attr('cy', (d) => yScale(d.avgL)); 
 
     // axes
     const xAxis = axisBottom(xScale)
@@ -107,8 +127,11 @@ function LineChart(props) {
         // .style("font-size", 20)
 
 
-    const yAxis = axisLeft(yScale);
+    const yAxis = axisLeft(ySubScale); 
     svg.select('.y-axis').style('color', 'white').call(yAxis);
+
+    // const ySubAxis = axisRight(ySubScale); 
+    // svg.select('.y-sub-axis').style('color', 'white').call(yAxis);
 
     // zoom
     const zoomBehavior = zoom()
