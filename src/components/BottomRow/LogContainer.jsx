@@ -1,11 +1,18 @@
 import React, { useState, useRef, useEffect } from 'react';
-import Log from './Log.jsx';
+import LogHeader from './LogHeader.jsx';
+import MutationRow from './MutationRow.jsx';
 
 function LogContainer(props) {
+  // loop through mutations
+  const mutationRows = [];
+  for (let el of props.data.mutations) {
+    mutationRows.push(<MutationRow data={el} key={el.mutationId} />);
+  }
+
   return (
     <div id="LogContainer">
-      <div id="box-titles">AQL Log</div>
-      <Log data={props.data} />
+      <LogHeader data={props.data} />
+      {mutationRows}
     </div>
   );
 }
