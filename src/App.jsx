@@ -52,7 +52,7 @@ function App() {
     <div className="App">
       <NavBar />
       <DashboardContainer
-        data={data}
+        data={aqlData}
         mutationData={mutationData}
         resolverStats={resolverStats}
       />
