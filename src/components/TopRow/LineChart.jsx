@@ -8,6 +8,8 @@ import {
   curveCardinal,
   axisBottom,
   axisLeft,
+  timeFormat,
+  tickFormat,
   zoom,
   zoomTransform,
 } from 'd3';
@@ -18,12 +20,10 @@ import useResizeObserver from '../useResizeObserver';
  */
 
 function LineChart(props) {
-  const avgLatency = props.mutationData.map(elt => ({avgL: elt.avgLatency, mutDate: elt.dateTime})); 
-  const subscribers = props.mutationData.map(elt => elt.expectedAqls);
-  const date = props.mutationData.map(elt => elt.dateTime); 
-  console.log(avgLatency);                                  
-  const mutationStartDate = new Date(date[0]);
-  console.log(mutationStartDate);
+  const avgLatency = props.mutationData.map(elt => ({avgL: elt.avgLatency, mutationDate: parseInt(elt.dateTime), subscribers: elt.expectedAqls})); 
+  const mutationLatencies = props.mutationData.map(elt => elt.avgLatency);
+  const avgSubscribers = props.mutationData.map(elt => elt.expectedAqls);
+  const mutationDates = props.mutationData.map(elt => parseInt(elt.dateTime));
 
   const svgRef = useRef();
   const wrapperRef = useRef();
@@ -39,8 +39,8 @@ function LineChart(props) {
 
     // scales + line generator
     const xScale = scaleLinear()
-      .domain([min(date), max(date)])
-      .range([10, width - 10]);
+      .domain([min(mutationDates), max(mutationDates)])
+      .range([0, width]);
 
     if (currentZoomState) {
       const newXScale = currentZoomState.rescaleX(xScale);
@@ -48,13 +48,22 @@ function LineChart(props) {
     }
 
     const yScale = scaleLinear()
-      .domain([0, max(avgLatency)])
-      .range([height - 10, 10]);
+      .domain([0, max(mutationLatencies) + 10])
+      .range([height - 10, 0]);
 
-    const lineGenerator = line()
-      .x((d) => xScale(d))
-      .y((d) => yScale(d))
+    const ySubScale = scaleLinear()
+      .domain([0, max(avgSubscribers) + 1])
+      .range([height - 10, 0]);
+
+    const latencyLine = line()
+      .x((d) => xScale(d.mutationDate))
+      .y((d) => yScale(d.avgL))
       .curve(curveCardinal);
+
+    const subscriberLine = line()
+    .x((d) => xScale(d.mutationDate))
+    .y((d) => yScale(d.subscribers))
+    .curve(curveCardinal);
 
     // render the line
     svgContent
@@ -64,7 +73,13 @@ function LineChart(props) {
       .attr('class', 'myLine')
       .attr('stroke', 'lightblue')
       .attr('fill', 'none')
-      .attr('d', lineGenerator);
+      .attr('d', latencyLine)
+    
+    svgContent
+      .append('path')
+      .data([avgLatency])
+      .style('stroke', 'hotpink')
+      .attr('d', subscriberLine);
 
     svgContent
       .selectAll('.myDot')
@@ -74,16 +89,23 @@ function LineChart(props) {
       .attr('stroke', 'lightblue')
       .attr('r', 2)
       .attr('fill', 'lightblue')
-      .attr('cx', (value, index) => xScale(index))
-      .attr('cy', yScale);
+      .attr('cx', (d) => xScale(d.mutationDate))
+      .attr('cy', (d) => yScale(d.avgL));
 
     // axes
-    const xAxis = axisBottom(xScale);
+    const xAxis = axisBottom(xScale)
+      .tickFormat(timeFormat('%Y-%m-%dT%H:%M:%S'));
+
     svg
       .select('.x-axis')
       .attr('transform', `translate(0, ${height})`)
       .call(xAxis)
-      .style('color', 'white');
+      .style('color', 'white')
+      .selectAll('text')
+        .attr("transform", "translate(-10,10)rotate(-45)")
+        .style("text-anchor", "end")
+        // .style("font-size", 20)
+
 
     const yAxis = axisLeft(yScale);
     svg.select('.y-axis').style('color', 'white').call(yAxis);
@@ -99,6 +121,26 @@ function LineChart(props) {
         const zoomState = zoomTransform(svg.node());
         setCurrentZoomState(zoomState);
       });
+    
+    // Add the labels to x and y-axes 
+    svg.append("text")
+      .attr("text-anchor", "end")
+      .attr("transform", "rotate(-90)")
+      .attr("y", -50)
+      .attr("x", -30)
+      .text("Average Latency")
+      .style("font-family", "Arial")
+      .style("font-size", "12px")
+      .style("fill", "white");
+
+      svg.append("text")
+      .attr("text-anchor", "end")
+      .attr("y", 260)
+      .attr("x", 210)
+      .text("Time")
+      .style("font-family", "Arial")
+      .style("font-size", "12px")
+      .style("fill", "white");
 
     svg.call(zoomBehavior);
   }, [currentZoomState, avgLatency, dimensions]);
