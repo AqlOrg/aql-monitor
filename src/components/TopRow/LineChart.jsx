@@ -52,7 +52,7 @@ function LineChart(props) {
 
     const yScale = scaleLinear()
       .domain([0, max(mutationLatencies) + 10])
-      .range([height, 0]);
+      .range([height - 10, 0]);
 
     const lineGenerator = line()
       .x((d) => xScale(d.mutationDate))
@@ -82,7 +82,7 @@ function LineChart(props) {
 
     // axes
     const xAxis = axisBottom(xScale)
-      .tickFormat(timeFormat('%Y-%m-%dT%H:%M:%S.%LZ'));
+      .tickFormat(timeFormat('%Y-%m-%dT%H:%M:%S'));
 
     svg
       .select('.x-axis')
