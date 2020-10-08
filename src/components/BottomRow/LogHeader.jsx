@@ -5,7 +5,17 @@ import React, { useRef, useEffect, useState } from 'react';
  */
 
 function LogHeader() {
-  return <div id="log"></div>;
+  return (
+    <div id='log'>
+      <div>Date</div>
+      <div>Time</div>
+      <div>ID</div>
+      <div>Resolver</div>
+      <div>Total Subscribers</div>
+      <div>Average Latency</div>
+      <div>Details</div>
+    </div>
+  );
 }
 
 export default LogHeader;
