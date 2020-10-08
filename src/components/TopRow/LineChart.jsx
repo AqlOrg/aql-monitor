@@ -20,10 +20,10 @@ import useResizeObserver from '../useResizeObserver';
  */
 
 function LineChart(props) {
-  const avgLatency = props.mutationData.map(elt => ({avgL: elt.avgLatency, mutationDate: parseInt(elt.dateTime)})); 
+  const avgLatency = props.mutationData.map(elt => ({avgL: elt.avgLatency, mutationDate: parseInt(elt.dateTime), subscribers: elt.expectedAqls})); 
   const mutationLatencies = props.mutationData.map(elt => elt.avgLatency);
+  const avgSubscribers = props.mutationData.map(elt => elt.expectedAqls);
   const mutationDates = props.mutationData.map(elt => parseInt(elt.dateTime));
-  const subscribers = props.mutationData.map(elt => elt.expectedAqls);
 
   const svgRef = useRef();
   const wrapperRef = useRef();
@@ -51,10 +51,19 @@ function LineChart(props) {
       .domain([0, max(mutationLatencies) + 10])
       .range([height - 10, 0]);
 
-    const lineGenerator = line()
+    const ySubscriberScale = scaleLinear()
+      .domain([0, max(avgSubscribers) + 1])
+      .range([height - 10, 0]);
+
+    const latencyLine = line()
       .x((d) => xScale(d.mutationDate))
       .y((d) => yScale(d.avgL))
       .curve(curveCardinal);
+
+    const subscriberLine = line()
+    .x((d) => xScale(d.mutationDate))
+    .y((d) => ySubscriberScale(d.subscribers))
+    .curve(curveCardinal);
 
     // render the line
     svgContent
@@ -64,7 +73,13 @@ function LineChart(props) {
       .attr('class', 'myLine')
       .attr('stroke', 'lightblue')
       .attr('fill', 'none')
-      .attr('d', lineGenerator);
+      .attr('d', latencyLine)
+    
+    svgContent
+      .append('path')
+      .data([avgLatency])
+      .style('stroke', 'hotpink')
+      .attr('d', subscriberLine);
 
     svgContent
       .selectAll('.myDot')
