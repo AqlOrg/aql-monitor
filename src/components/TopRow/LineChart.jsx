@@ -51,7 +51,7 @@ function LineChart(props) {
       .domain([0, max(mutationLatencies) + 10])
       .range([height - 10, 0]);
 
-    const ySubscriberScale = scaleLinear()
+    const ySubScale = scaleLinear()
       .domain([0, max(avgSubscribers) + 1])
       .range([height - 10, 0]);
 
@@ -62,7 +62,7 @@ function LineChart(props) {
 
     const subscriberLine = line()
     .x((d) => xScale(d.mutationDate))
-    .y((d) => ySubscriberScale(d.subscribers))
+    .y((d) => yScale(d.subscribers))
     .curve(curveCardinal);
 
     // render the line
