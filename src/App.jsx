@@ -6,7 +6,7 @@ import DashboardContainer from './components/DashboardContainer.jsx';
 // SCSS
 import '../public/scss/application.scss';
 // import new dummy data
-import dummyData from '../dummydata';
+import dummyData from '../server/sampleDataShape.js';
 
 function App() {
   // CREATE DUMMY DATA
@@ -33,7 +33,7 @@ function App() {
   //   .catch(err => console.log(err));
 
   // this is just till our end point is set up
-  aqlData = dummyData[0];
+  aqlData = dummyData;
  
   // PIE CHART DATA HOOK
   const [resolverStats, setResolverStats] = useState(aqlData.resolverStats);
