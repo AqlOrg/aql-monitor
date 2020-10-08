@@ -6,7 +6,7 @@ import React, { useRef, useEffect, useState } from 'react';
 
 function LogHeader() {
   return (
-    <div id='log'>
+    <div id='log-header'>
       <div>Date</div>
       <div>Time</div>
       <div>ID</div>
