@@ -1,4 +1,3 @@
-
 //return obj with resolver names as properties and count as value
 function resolverStats(data) {
   // create returnObj
@@ -41,13 +40,13 @@ function subscriptionHistory(data) {
 }
 
 function mutations(data) {
-  //create hash to store aqls
+  //create hashes to store aqls and errorAqls
   const hashql = {};
-  const returnArr = [];
+  let returnArr = [];
   const errorql = {};
-  const errorArr = [];
+  let errorArr = [];
 
-  //create a function that takes an array and returns number
+  // getAvg function returns average latency of array of objects with latency property
   function getAvg(array) {
     let total = 0;
     if (array.length) {
@@ -56,7 +55,7 @@ function mutations(data) {
       }
       total = total / array.length;
     }
-    return total;
+    return Math.round(total);
   }
 
   for (let el of data.rows) {
@@ -86,7 +85,7 @@ function mutations(data) {
       }
     }
   }
-  // loop through hash
+  // loop through hash and create properties on mutation object
   for (let key in hashql) {
     const mutObj = {};
     mutObj.mutationId = key;
@@ -95,13 +94,17 @@ function mutations(data) {
     mutObj.dateTime = hashql[key][0].mutation_received_time;
     mutObj.aqls = hashql[key];
     mutObj.avgLatency = getAvg(mutObj.aqls);
-    //   mutObj.aqls.length > 0 ? total / parseInt(mutObj.aqls.length) : total;
     returnArr.push(mutObj);
   }
+  //calculate average latency of items in errorql
   for (let key in errorql) {
     errorql[key].avgLatency = getAvg(errorql[key].aqls);
     errorArr.push(errorql[key]);
   }
+
+  //sort return arrays
+  returnArr = returnArr.sort((a, b) => (a.dateTime > b.dateTime ? 1 : -1));
+  errorArr = errorArr.sort((a, b) => (a.dateTime > b.dateTime ? 1 : -1));
   return [returnArr, errorArr];
 }
 
