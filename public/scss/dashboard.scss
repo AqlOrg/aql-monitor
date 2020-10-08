@@ -129,10 +129,9 @@
     align-items: center;
     margin-top: 20px;
     width: 80%;
-    height: 120px;
+    height: auto;
     border: 1px solid $primary-color;
-
-    padding-top: 20px;
+    padding: 20px;
 
     #LogContainer {
       display: flex;
@@ -141,6 +140,13 @@
       width: 100%;
       align-items: center;
       color: snow;
+    }
+
+    #log-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
     }
 
     .mutation-row {
