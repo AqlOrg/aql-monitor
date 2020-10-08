@@ -136,7 +136,33 @@
 
     #LogContainer {
       display: flex;
+      flex-direction: column;
       justify-content: start;
+      width: 100%;
+      align-items: center;
+      color: snow;
+    }
+
+    .mutation-row {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 100%;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+
+    .mutation-data {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      align-items: center;
+    }
+
+    .aql-row {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
       align-items: center;
     }
   }
