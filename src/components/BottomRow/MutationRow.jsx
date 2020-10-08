@@ -12,13 +12,11 @@ function MutationRow(props) {
       <div className='mutation-data'>
         <div>{dateTime.toLocaleDateString()}</div>
         <div>{dateTime.toLocaleTimeString()}</div>
-        <div>{props.data.mutationId}</div>
+        <div className={'wide-data'}>{props.data.mutationId}</div>
         <div>{props.data.resolver}</div>
         <div>{props.data.expectedAqls}</div>
         <div>{props.data.avgLatency}</div>
-        <div>
-          <button onClick={handleClick}>➕</button>
-        </div>
+        <button onClick={handleClick}>➕</button>
       </div>
       {expanded && <AqlContainer data={props.data.aqls} />}
     </div>

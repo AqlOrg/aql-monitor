@@ -131,7 +131,7 @@
     width: 80%;
     height: auto;
     border: 1px solid $primary-color;
-    padding: 20px;
+    padding-top: 20px;
 
     #LogContainer {
       display: flex;
@@ -140,6 +140,7 @@
       width: 100%;
       align-items: center;
       color: snow;
+      text-align: center;
     }
 
     #log-header {
@@ -147,6 +148,20 @@
       justify-content: space-between;
       align-items: center;
       width: 100%;
+      div {
+        flex: 1 1 0;
+      }
+
+      .wide-data {
+        flex-grow: 2;
+      }
+
+      .spacer {
+        padding: 3, 5;
+    margin-right: 3px;
+    margin-left: 5px;
+    width: 31px;
+      }
     }
 
     .mutation-row {
@@ -156,11 +171,45 @@
       width: 100%;
       align-items: center;
       margin-bottom: 2rem;
+
+      div {
+        flex: 1 1 0;
+      }
+
+      .wide-data {
+        flex-grow: 2;
+      }
+
+      button {
+        margin-left: 5px;
+      }
+
+      .aql-container {
+        border: 1px solid snow;
+        margin-top: 16px;
+        width: 80%;
+
+        div {
+          flex: 1 1 0;
+        }
+  
+        .wide-data {
+          flex-grow: 2;
+        }
+
+    .aql-row-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+     
+    }
+      }
     }
 
     .mutation-data {
       display: flex;
-      justify-content: space-between;
+      justify-content: flex-start;
       width: 100%;
       align-items: center;
     }

@@ -4,10 +4,9 @@ import React, { useRef, useEffect, useState } from 'react';
  * Component that renders a Log Entry
  */
 
-function LogHeader() {
+function AqlRowHeader() {
   return (
-    <div id='log-header'>
-      <div>Date</div>
+    <div className={'aql-row-header'}>
       <div>Time</div>
       <div className={'wide-data'}>ID</div>
       <div>Resolver</div>
@@ -17,4 +16,4 @@ function LogHeader() {
   );
 }
 
-export default LogHeader;
+export default AqlRowHeader;
