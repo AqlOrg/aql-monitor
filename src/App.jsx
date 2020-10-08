@@ -18,11 +18,6 @@ function App() {
     }));
 
   let aqlData;
-
-  const url = 'https://api.musixmatch.com/ws/1.1/matcher.lyrics.get?format=jsonp&callback=callback&q_track=otra%20noche%20en%20miami&q_artist=bad%20bunny&apikey=f230943b442c25e3c487414ef3703789';
-  fetch(url)
-    //.then(res => res.json())
-    .then(res => console.log(res));
   
   // const postData = {
   //   method: 'POST',

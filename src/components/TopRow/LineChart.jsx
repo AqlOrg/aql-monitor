@@ -9,6 +9,7 @@ import {
   curveCardinal,
   axisBottom,
   axisLeft,
+  axisRight,
   timeFormat,
   zoom,
   zoomTransform,
@@ -29,20 +30,11 @@ function LineChart(props) {
   avgLatency = avgLatency.slice(0,80);
   avgSubscribers = avgSubscribers.slice(0,80);
   mutationLatencies = mutationLatencies.slice(0,80);
+
   // console.log(mutationDates);
   // console.log(avgLatency.slice(0, 50));
 
   // console.log(mutationDates);
-
-  for(let i = 0; i < mutationDates.length; i++) {
-    if(mutationDates[i] === mutationDates[i+1]) {
-      console.log('not increasing');
-      console.log(i);
-      console(mutationDates[i]);
-    } else {
-      console.log('we dont fucking know whats going on');
-    }
-  }
 
   const svgRef = useRef();
   const wrapperRef = useRef();
@@ -97,7 +89,7 @@ function LineChart(props) {
       .append('path')
       .data([avgLatency])
       .attr('class', 'myLine')
-      .style('stroke', 'hotpink')
+      .style('stroke', 'dodgerblue')
       .attr('fill', 'none')
       .attr('d', subscriberLine);
 
@@ -127,11 +119,14 @@ function LineChart(props) {
         // .style("font-size", 20)
 
 
-    const yAxis = axisLeft(ySubScale); 
-    svg.select('.y-axis').style('color', 'white').call(yAxis);
+    const yAxis = axisLeft(yScale); 
+    svg.select('.y-axis').style('color', 'lightblue').call(yAxis);
 
-    // const ySubAxis = axisRight(ySubScale); 
-    // svg.select('.y-sub-axis').style('color', 'white').call(yAxis);
+    const ySubAxis = axisRight(ySubScale); 
+    svg.append('g')
+      .style('color', 'white')
+      .attr("transform", "translate(400,0)")
+      .call(ySubAxis);
 
     // zoom
     const zoomBehavior = zoom()
@@ -156,7 +151,17 @@ function LineChart(props) {
       .style("font-size", "12px")
       .style("fill", "white");
 
-      svg.append("text")
+    svg.append("text")
+      .attr("text-anchor", "end")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 432)
+      .attr("x", -12)
+      .text("Number of Subscribers")
+      .style("font-family", "Arial")
+      .style("font-size", "12px")
+      .style("fill", "dodgerblue");
+
+    svg.append("text")
       .attr("text-anchor", "end")
       .attr("y", 260)
       .attr("x", 210)
