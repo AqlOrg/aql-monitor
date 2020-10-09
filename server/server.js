@@ -15,6 +15,8 @@ app.use(express.static('public'));
 app.use('/api', router);
 
 // GitHub OAuth Section
+app.use(passport.initialize());
+
 passport.use(new GitHubStrategy({
   clientID: '',
   clientSecret: '',
