@@ -29,6 +29,15 @@ passport.use(new GitHubStrategy({
 ));
 
 app.get('/githublogin', passport.authenticate('github', { session: true }));
+
+app.get(
+  '/auth/github/callback',
+  passport.authenticate('github', { session: true }),
+  (req, res) => {
+    console.log(res);
+    res.sendStatus(418);
+  }
+);
 // ====================
 
 module.exports = app.listen(PORT, () => {
