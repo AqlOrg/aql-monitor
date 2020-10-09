@@ -8,7 +8,7 @@ function AqlRow(props) {
         {localDateTime.toLocaleTimeString()} {localDateTime.getMilliseconds()}{' '}
         ms
       </div>
-      <div>{props.data.id}</div>
+      <div className = {"wide-data"}>{props.data.id}</div>
       <div>{props.data.resolver}</div>
       <div>{props.data.expected_subscribers}</div>
       <div>{props.data.latency}</div>
