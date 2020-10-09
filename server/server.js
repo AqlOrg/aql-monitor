@@ -22,11 +22,13 @@ passport.use(new GitHubStrategy({
   clientSecret: '',
   callbackURL: '',
 },
-  function (accessToken, refreshToken, profile, cb) {
+  async (accessToken, refreshToken, profile, cb) => {
     console.log(profile);
     return profile;
   }
-))
+));
+
+app.get('/githublogin', passport.authenticate('github', { session: true }));
 // ====================
 
 module.exports = app.listen(PORT, () => {
