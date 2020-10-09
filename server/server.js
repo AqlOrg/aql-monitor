@@ -14,7 +14,18 @@ app.use(express.static('public'));
 
 app.use('/api', router);
 
-
+// GitHub OAuth Section
+passport.use(new GitHubStrategy({
+  clientID: '',
+  clientSecret: '',
+  callbackURL: '',
+},
+  function (accessToken, refreshToken, profile, cb) {
+    console.log(profile);
+    return profile;
+  }
+))
+// ====================
 
 module.exports = app.listen(PORT, () => {
   console.log('Aql hears you loud and clear on port 3000');
