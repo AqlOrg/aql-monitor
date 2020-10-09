@@ -27,10 +27,10 @@ function LineChart(props) {
   let avgSubscribers = props.mutationData.map(elt => parseInt(elt.expectedAqls));
   let mutationDates = props.mutationData.map(elt => parseInt(elt.dateTime));
 
-  mutationDates = mutationDates.slice(250);
-  avgLatency = avgLatency.slice(250);
-  avgSubscribers = avgSubscribers.slice(250);
-  mutationLatencies = mutationLatencies.slice(250);
+  mutationDates = mutationDates.slice(0, 10);
+  avgLatency = avgLatency.slice(0, 10);
+  avgSubscribers = avgSubscribers.slice(0, 10);
+  mutationLatencies = mutationLatencies.slice(0, 10);
 
   // console.log(mutationDates);
   // console.log(avgLatency.slice(0, 50));
