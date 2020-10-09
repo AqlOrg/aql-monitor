@@ -21,15 +21,16 @@ import useResizeObserver from '../useResizeObserver';
  */
 
 function LineChart(props) {
+
   let avgLatency = props.mutationData.map(elt => ({avgL: elt.avgLatency, mutationDate: parseInt(elt.dateTime), subscribers: parseInt(elt.expectedAqls)})); 
   let mutationLatencies = props.mutationData.map(elt => elt.avgLatency);
   let avgSubscribers = props.mutationData.map(elt => parseInt(elt.expectedAqls));
   let mutationDates = props.mutationData.map(elt => parseInt(elt.dateTime));
 
-  mutationDates = mutationDates.slice(0,80);
-  avgLatency = avgLatency.slice(0,80);
-  avgSubscribers = avgSubscribers.slice(0,80);
-  mutationLatencies = mutationLatencies.slice(0,80);
+  mutationDates = mutationDates.slice(0, 10);
+  avgLatency = avgLatency.slice(0, 10);
+  avgSubscribers = avgSubscribers.slice(0, 10);
+  mutationLatencies = mutationLatencies.slice(0, 10);
 
   // console.log(mutationDates);
   // console.log(avgLatency.slice(0, 50));
@@ -120,12 +121,12 @@ function LineChart(props) {
 
 
     const yAxis = axisLeft(yScale); 
-    svg.select('.y-axis').style('color', 'lightblue').call(yAxis);
+    svg.select('.y-axis').style('color', 'white').call(yAxis);
 
     const ySubAxis = axisRight(ySubScale); 
     svg.append('g')
       .style('color', 'white')
-      .attr("transform", "translate(400,0)")
+      .attr("transform", "translate(700,0)")
       .call(ySubAxis);
 
     // zoom
@@ -149,28 +150,28 @@ function LineChart(props) {
       .text("Average Latency")
       .style("font-family", "Arial")
       .style("font-size", "12px")
-      .style("fill", "white");
+      .style("fill", "lightblue");
 
     svg.append("text")
       .attr("text-anchor", "end")
       .attr("transform", "rotate(-90)")
-      .attr("y", 432)
+      .attr("y", 732)
       .attr("x", -12)
       .text("Number of Subscribers")
       .style("font-family", "Arial")
       .style("font-size", "12px")
       .style("fill", "dodgerblue");
 
-    svg.append("text")
-      .attr("text-anchor", "end")
-      .attr("y", 260)
-      .attr("x", 210)
-      .text("Time")
-      .style("font-family", "Arial")
-      .style("font-size", "12px")
-      .style("fill", "white");
+    // svg.append("text")
+    //   .attr("text-anchor", "end")
+    //   .attr("y", 260)
+    //   .attr("x", 210)
+    //   .text("Time")
+    //   .style("font-family", "Arial")
+    //   .style("font-size", "12px")
+    //   .style("fill", "white");
 
-    svg.call(zoomBehavior);
+    // svg.call(zoomBehavior);
   }, [currentZoomState, avgLatency, dimensions]);
 
   return (

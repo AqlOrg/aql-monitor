@@ -1,16 +1,16 @@
 const data = {
   "resolverStats": [
       {
-          "name": "newColor",
+          "name": "color",
           "value": 788
       },
       {
-          "name": "null",
-          "value": 3
+        "name": "feed",
+        "value": 225
       },
       {
-          "name": "newLuckyNumber",
-          "value": 65
+          "name": "luckyNumber",
+          "value": 435
       }
   ],
   "subscriptionHistory": {
