@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const GitHubStrategy = require('passport-github').Strategy;
+const passport = require('passport');
 const app = express();
 const PORT = 3000;
 
@@ -14,7 +15,7 @@ app.use(express.static('public'));
 
 app.use('/api', router);
 
-// GitHub OAuth Section
+// ---------------------- GitHub OAuth Section ----------------------- //
 
 // Initialize Passport
 app.use(passport.initialize());
@@ -29,7 +30,7 @@ passport.use(new GitHubStrategy({
   async (accessToken, refreshToken, profile, cb) => {
     console.log(profile);
     // profile._json => profile information
-    return profile;
+    cb(null, profile);
   }
 ));
 
