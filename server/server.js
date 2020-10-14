@@ -32,6 +32,17 @@ passport.use(new GitHubStrategy({
     // profile._json => profile information
     // find profile in users table based on githubID
     const aqlsUser = `SELECT * FROM users WHERE githubID = profile._json.id`
+    //insert this data to user table
+    const signupQuery = `
+      INSERT into users (
+        username,
+        display_name,
+        github_id,
+        avatar_url,
+        uuid
+      )
+      VALUES($1, $2, $3, $4, $5)
+    `
     cb(null, profile);
   }
 ));
