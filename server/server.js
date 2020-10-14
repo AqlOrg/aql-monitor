@@ -30,9 +30,11 @@ passport.use(new GitHubStrategy({
 },
   // Async callback function: params- tokens, GitHub profile, callback
   async (accessToken, refreshToken, profile, cb) => {
-    // console.log(profile);
-    // find profile in users table based on githubID
-    const aqlsUser = await db.query(`SELECT * FROM users WHERE github_id = $1;`, [profile.id]);
+    // find profile in users table based on githubId
+    const verifyUser = `SELECT * FROM users WHERE github_id = $1;`
+    const githubId = [profile.id];
+    const aqlsUser = await db.query(verifyUser, githubId);
+  
     //insert this data to user table
     const signupQuery = `
       INSERT into users (
@@ -51,15 +53,11 @@ passport.use(new GitHubStrategy({
       profile._json.avatar_url,
       uuidv4()
     ]
-   
-    console.log('aqls user:', aqlsUser.rows)
+
     //if aqlsUser does not exist in the database insert user data into user table
     if (!aqlsUser.rows.length) {
-      console.log('!AQLSUSER')
       db.query(signupQuery, singupArray)
-      .then(() => console.log('USER HAS BEEN CREATED'))
     }
-
     cb(null, profile);
   }
 ));
@@ -72,7 +70,9 @@ app.get(
   '/auth/github/callback',
   passport.authenticate('github', { session: false }),
   (req, res) => {
-    // console.log(res);
+    res.locals.username = req.user.username;
+    res.locals.id = req.user.id;
+    res.locals.avatar = req.user.avatar;
     res.sendStatus(418);
   }
 );
