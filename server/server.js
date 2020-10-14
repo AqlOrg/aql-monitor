@@ -50,7 +50,10 @@ passport.use(new GitHubStrategy({
     const avatar_url = profile._json.avatar_url;
     let uuid = uuidv4();
 
-    //if aqlsUser does not exist in the database 
+    //if aqlsUser does not exist in the database insert user data into user table
+    if (!aqlsUser) {
+      db.query(signupQuery, user);
+    }
 
     cb(null, profile);
   }
@@ -68,7 +71,7 @@ app.get(
     res.sendStatus(418);
   }
 );
-//====================
+//=================================================================
 
 module.exports = app.listen(PORT, () => {
   console.log('Aql hears you loud and clear on port 3000');
