@@ -30,6 +30,8 @@ passport.use(new GitHubStrategy({
   async (accessToken, refreshToken, profile, cb) => {
     console.log(profile);
     // profile._json => profile information
+    // find profile in users table based on githubID
+    const aqlsUser = `SELECT * FROM users WHERE githubID = profile._json.id`
     cb(null, profile);
   }
 ));
