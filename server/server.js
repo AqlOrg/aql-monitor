@@ -4,6 +4,8 @@ const GitHubStrategy = require('passport-github').Strategy;
 const passport = require('passport');
 const app = express();
 const PORT = 3000;
+const db = require('./model.js');
+const { v4: uuidv4 } = require('uuid');
 
 const router = require('./router');
 
@@ -29,9 +31,8 @@ passport.use(new GitHubStrategy({
   // Async callback function: params- tokens, GitHub profile, callback
   async (accessToken, refreshToken, profile, cb) => {
     console.log(profile);
-    // profile._json => profile information
     // find profile in users table based on githubID
-    const aqlsUser = `SELECT * FROM users WHERE githubID = profile._json.id`
+    const aqlsUser = `SELECT * FROM users WHERE github_id = $3`
     //insert this data to user table
     const signupQuery = `
       INSERT into users (
@@ -47,7 +48,10 @@ passport.use(new GitHubStrategy({
     const display_name = profile.displayName;
     const github_id = profile.id;
     const avatar_url = profile._json.avatar_url;
-    
+    let uuid = uuidv4();
+
+    //if aqlsUser does not exist in the database 
+
     cb(null, profile);
   }
 ));
