@@ -41,8 +41,13 @@ passport.use(new GitHubStrategy({
         avatar_url,
         uuid
       )
-      VALUES($1, $2, $3, $4, $5)
+      VALUES($1, $2, $3, $4, $5);
     `
+    const username = profile.username;
+    const display_name = profile.displayName;
+    const github_id = profile.id;
+    const avatar_url = profile._json.avatar_url;
+    
     cb(null, profile);
   }
 ));
@@ -55,7 +60,7 @@ app.get(
   '/auth/github/callback',
   passport.authenticate('github', { session: false }),
   (req, res) => {
-    console.log(res);
+    // console.log(res);
     res.sendStatus(418);
   }
 );
