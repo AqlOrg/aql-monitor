@@ -73,6 +73,7 @@ app.get(
     res.locals.username = req.user.username;
     res.locals.id = req.user.id;
     res.locals.avatar = req.user.avatar;
+    res.locals.uuid = req.user.uuid;
     res.sendStatus(418);
   }
 );
