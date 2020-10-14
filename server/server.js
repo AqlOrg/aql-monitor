@@ -30,9 +30,9 @@ passport.use(new GitHubStrategy({
 },
   // Async callback function: params- tokens, GitHub profile, callback
   async (accessToken, refreshToken, profile, cb) => {
-    console.log(profile);
+    // console.log(profile);
     // find profile in users table based on githubID
-    const aqlsUser = `SELECT * FROM users WHERE github_id = $3`
+    const aqlsUser = await db.query(`SELECT * FROM users WHERE github_id = $1;`, [profile.id]);
     //insert this data to user table
     const signupQuery = `
       INSERT into users (
@@ -42,17 +42,22 @@ passport.use(new GitHubStrategy({
         avatar_url,
         uuid
       )
-      VALUES($1, $2, $3, $4, $5);
+      VALUES ($1, $2, $3, $4, $5);
     `
-    const username = profile.username;
-    const display_name = profile.displayName;
-    const github_id = profile.id;
-    const avatar_url = profile._json.avatar_url;
-    let uuid = uuidv4();
-
+    const singupArray = [
+      profile.username,
+      profile.displayName,
+      profile.id,
+      profile._json.avatar_url,
+      uuidv4()
+    ]
+   
+    console.log('aqls user:', aqlsUser.rows)
     //if aqlsUser does not exist in the database insert user data into user table
-    if (!aqlsUser) {
-      db.query(signupQuery, user);
+    if (!aqlsUser.rows.length) {
+      console.log('!AQLSUSER')
+      db.query(signupQuery, singupArray)
+      .then(() => console.log('USER HAS BEEN CREATED'))
     }
 
     cb(null, profile);
