@@ -7,6 +7,9 @@ import DashboardContainer from './components/DashboardContainer.jsx';
 import '../public/scss/application.scss';
 // import new dummy data
 import dummyData from '../server/sampleDataShape';
+//import landing page
+import LandingPage from '../src/components/LandingPage/landingPage.jsx';
+
 function App() {
   let [ready, setReady] = useState(false);
   let [aqlData, setAqlData] = useState({});
@@ -21,7 +24,7 @@ function App() {
 
   return (
     <div className='App'>
-      <NavBar />
+      {/* <NavBar />
       {ready && (
         <DashboardContainer
           dummyData={dummyData}
@@ -29,7 +32,7 @@ function App() {
           mutationData={aqlData.mutations}
           resolverStats={aqlData.resolverStats}
         />
-      )}
+      )} */}
     </div>
   );
 }
