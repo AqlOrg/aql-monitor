@@ -42,7 +42,7 @@ passport.use(new GitHubStrategy({
         display_name,
         github_id,
         avatar_url,
-        uuid
+        user_token
       )
       VALUES ($1, $2, $3, $4, $5);
     `
@@ -82,3 +82,10 @@ app.get(
 module.exports = app.listen(PORT, () => {
   console.log('Aql hears you loud and clear on port 3000');
 });
+
+/*
+SELECT * FROM aql
+WHERE users.github_id= $1
+JOIN aql ON users.aql_id = aql.id
+VALUES (GitHubID)
+*/
