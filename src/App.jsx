@@ -4,7 +4,8 @@ import * as d3 from 'd3';
 import NavBar from './components/NavBar.jsx';
 import DashboardContainer from './components/DashboardContainer.jsx';
 // SCSS
-import '../public/scss/application.scss';
+// import '../public/scss/application.scss';
+import '../public/scss/landingPage.scss';
 // import new dummy data
 import dummyData from '../server/sampleDataShape';
 //import landing page
@@ -24,6 +25,7 @@ function App() {
 
   return (
     <div className='App'>
+      <LandingPage />
       {/* <NavBar />
       {ready && (
         <DashboardContainer
