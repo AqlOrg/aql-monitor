@@ -15,7 +15,7 @@ import LandingPage from '../src/components/LandingPage/landingPage.jsx';
 function App() {
   const [ready, setReady] = useState(false);
   const [aqlData, setAqlData] = useState({});
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userData, setUserData] = useState({});
 
   useEffect(() => {
     fetch('/api')
@@ -24,7 +24,13 @@ function App() {
       .then(() => setReady(true))
       .catch((err) => console.log(err));
   }, []);
-  
+
+  const getUserData = async () => {
+    const response = await fetch('/auth/github/callback');
+    const data = await response.json();
+    setUserData(data);
+  };
+
   return (
     <div className='App'>
       <Router>
