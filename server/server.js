@@ -70,10 +70,15 @@ app.get(
   '/auth/github/callback',
   passport.authenticate('github', { session: false }),
   (req, res) => {
-    res.locals.username = req.user.username;
-    res.locals.id = req.user.id;
-    res.locals.avatar = req.user.avatar;
-    res.locals.uuid = req.user.uuid;
+    res.json({
+      username: req.user.username,
+      githubId: req.user.id,
+      avatar: req.user._json.avatar_url,
+    });
+    // res.locals.username = req.user.username;
+    // res.locals.id = req.user.id;
+    // res.locals.avatar = req.user.avatar;
+    // let userToken = req.user.uuid;
     res.sendStatus(418);
   }
 );
@@ -83,9 +88,3 @@ module.exports = app.listen(PORT, () => {
   console.log('Aql hears you loud and clear on port 3000');
 });
 
-/*
-SELECT * FROM aql
-WHERE users.github_id= $1
-JOIN aql ON users.aql_id = aql.id
-VALUES (GitHubID)
-*/
