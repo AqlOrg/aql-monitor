@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Link, Switch, NavLink } from 'react-router-dom';
 import * as d3 from 'd3';
 // COMPONENT IMPORTS
 import NavBar from './components/NavBar.jsx';
@@ -12,8 +13,9 @@ import dummyData from '../server/sampleDataShape';
 import LandingPage from '../src/components/LandingPage/landingPage.jsx';
 
 function App() {
-  let [ready, setReady] = useState(false);
-  let [aqlData, setAqlData] = useState({});
+  const [ready, setReady] = useState(false);
+  const [aqlData, setAqlData] = useState({});
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
     fetch('/api')
@@ -22,10 +24,11 @@ function App() {
       .then(() => setReady(true))
       .catch((err) => console.log(err));
   }, []);
-
+  
   return (
     <div className='App'>
-      <LandingPage />
+      <Router>
+      <Route exact path='/' component={LandingPage} />
       {/* <NavBar />
       {ready && (
         <DashboardContainer
@@ -35,6 +38,7 @@ function App() {
           resolverStats={aqlData.resolverStats}
         />
       )} */}
+      </Router>
     </div>
   );
 }

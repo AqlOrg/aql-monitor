@@ -9,7 +9,9 @@ function Navbar () {
         <li><a href="#">Team</a></li>
         <Router forceRefresh={true}>
           <NavLink to="/githublogin">
-            <button id='loginBtn'>Signup/Login</button>
+            <button id='loginBtn'>
+              Signup/Login
+            </button>
           </NavLink>
         </Router>
       </ul>
