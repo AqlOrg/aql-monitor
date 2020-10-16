@@ -6,12 +6,7 @@ function PieChartContainer(props) {
     <div id="PieChartContainer">
       <div id="box-titles">Resolver Frequency</div>
       <PieChart
-        dummyData={props.dummyData}
         resolverStats={props.resolverStats}
-        width={250}
-        height={250}
-        innerRadius={0}
-        outerRadius={125}
       />
     </div>
   );

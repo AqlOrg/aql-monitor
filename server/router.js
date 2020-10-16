@@ -10,7 +10,7 @@ const {
 Router.get(
   '/',
   (req, res, next) => {
-    const queryString = 'SELECT * FROM aql;';
+    const queryString = 'SELECT * FROM aql ORDER BY mutation_received_time DESC LIMIT 400';
     db.query(queryString, (err, data) => {
       // If error, console.log
       if (err) console.log('ERROR: ', err);
