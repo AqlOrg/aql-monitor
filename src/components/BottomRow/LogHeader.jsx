@@ -13,6 +13,7 @@ function LogHeader() {
       <div>Resolver</div>
       <div>Subscribers</div>
       <div>Latency</div>
+      <div className={'spacer'}></div>
     </div>
   );
 }
