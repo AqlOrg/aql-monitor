@@ -1,15 +1,21 @@
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Link, Switch, NavLink } from 'react-router-dom';
 import * as d3 from 'd3';
 // COMPONENT IMPORTS
 import NavBar from './components/NavBar.jsx';
 import DashboardContainer from './components/DashboardContainer.jsx';
 // SCSS
 import '../public/scss/application.scss';
+import '../public/scss/landingPage.scss';
 // import new dummy data
 import dummyData from '../server/sampleDataShape';
+//import landing page
+import LandingPage from '../src/components/LandingPage/landingPage.jsx';
+
 function App() {
-  let [ready, setReady] = useState(false);
-  let [aqlData, setAqlData] = useState({});
+  const [ready, setReady] = useState(false);
+  const [aqlData, setAqlData] = useState({});
+  const [userData, setUserData] = useState({});
 
   useEffect(() => {
     fetch('/api')
@@ -21,7 +27,9 @@ function App() {
 
   return (
     <div className='App'>
-      <NavBar />
+      <Router>
+      <Route exact path='/' component={LandingPage} />
+      {/* <NavBar />
       {ready && (
         <DashboardContainer
           dummyData={dummyData}
@@ -29,7 +37,8 @@ function App() {
           mutationData={aqlData.mutations}
           resolverStats={aqlData.resolverStats}
         />
-      )}
+      )} */}
+      </Router>
     </div>
   );
 }

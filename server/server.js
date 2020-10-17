@@ -6,6 +6,7 @@ const app = express();
 const PORT = 3000;
 const db = require('./model.js');
 const { v4: uuidv4 } = require('uuid');
+const authToken = require('./controllers/authTokenController.js');
 
 const router = require('./router');
 const traqlRouter = require('./traqlRouter');
@@ -44,7 +45,7 @@ passport.use(new GitHubStrategy({
         display_name,
         github_id,
         avatar_url,
-        uuid
+        user_token
       )
       VALUES ($1, $2, $3, $4, $5);
     `
@@ -71,16 +72,19 @@ app.get('/githublogin', passport.authenticate('github', { session: false }));
 app.get(
   '/auth/github/callback',
   passport.authenticate('github', { session: false }),
+  authToken.getToken,
   (req, res) => {
     res.locals.username = req.user.username;
     res.locals.id = req.user.id;
-    res.locals.avatar = req.user.avatar;
-    res.locals.uuid = req.user.uuid;
+    res.locals.avatar = req.user._json.avatar_url;
+    res.cookie('userToken', res.locals.token);
     res.sendStatus(418);
   }
 );
+
 //=================================================================
 
 module.exports = app.listen(PORT, () => {
   console.log('Aql hears you loud and clear on port 3000');
 });
+
