@@ -5,6 +5,7 @@ const {
   subscriptionHistory,
   mutations,
 } = require('../helperFuncs');
+const { query } = require('express');
 
 aqlDatabaseController.getAqls = (req, res, next) => {
   const queryString = 'SELECT * FROM aql;';
@@ -24,6 +25,27 @@ aqlDatabaseController.getAqls = (req, res, next) => {
     res.locals.data = dataObj;
     return next();
   });
+}
+
+aqlDatabaseController.getUserData = (req, res, next) => {
+  // want username, avatar url
+  // we're going to send on req.body the uuid and want to only receive row for that uuid
+  const userToken = req.body;
+  const queryString = `
+  SELECT 
+    username,
+    github_id,
+    avatar_url
+
+  WHERE user_token = $1
+  `
+  const tokenQuery = [userToken];
+  db.query(queryString, tokenQuery)
+  .then((userData) => {
+    // res.locals.userData = userData
+    console.log(userData)
+    return next();
+  })
 }
 
 module.exports = aqlDatabaseController;
