@@ -6,6 +6,7 @@ const app = express();
 const PORT = 3000;
 const db = require('./model.js');
 const { v4: uuidv4 } = require('uuid');
+const authToken = require('./controllers/authTokenController.js');
 
 const router = require('./router');
 
@@ -69,19 +70,16 @@ app.get('/githublogin', passport.authenticate('github', { session: false }));
 app.get(
   '/auth/github/callback',
   passport.authenticate('github', { session: false }),
+  authToken.getToken,
   (req, res) => {
-    res.json({
-      username: req.user.username,
-      githubId: req.user.id,
-      avatar: req.user._json.avatar_url,
-    });
-    // res.locals.username = req.user.username;
-    // res.locals.id = req.user.id;
-    // res.locals.avatar = req.user.avatar;
-    // let userToken = req.user.uuid;
+    res.locals.username = req.user.username;
+    res.locals.id = req.user.id;
+    res.locals.avatar = req.user._json.avatar_url;
+    res.cookie('userToken', res.locals.token);
     res.sendStatus(418);
   }
 );
+
 //=================================================================
 
 module.exports = app.listen(PORT, () => {

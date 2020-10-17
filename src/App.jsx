@@ -25,12 +25,6 @@ function App() {
       .catch((err) => console.log(err));
   }, []);
 
-  const getUserData = async () => {
-    const response = await fetch('/auth/github/callback');
-    const data = await response.json();
-    setUserData(data);
-  };
-
   return (
     <div className='App'>
       <Router>
