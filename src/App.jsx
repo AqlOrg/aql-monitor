@@ -11,12 +11,23 @@ import '../public/scss/landingPage.scss';
 import dummyData from '../server/sampleDataShape';
 //import landing page
 import LandingPage from '../src/components/LandingPage/landingPage.jsx';
+import Cookies from 'js-cookie';
+
+const userTokenCookie = Cookies.get('userToken');
 
 function App() {
   const [ready, setReady] = useState(false);
   const [aqlData, setAqlData] = useState({});
-  const [userData, setUserData] = useState({});
+  const [userToken, setUserToken] = useState(userTokenCookie);
 
+  // useEffect(() => {
+  //   fetch('/api')
+  //     .then((res) => res.json())
+  //     .then((data) => setAqlData(data))
+  //     .then(() => setReady(true))
+  //     .catch((err) => console.log(err));
+  // }, []);
+  
   useEffect(() => {
     fetch('/api')
       .then((res) => res.json())
@@ -27,9 +38,9 @@ function App() {
 
   return (
     <div className='App'>
-      <Router>
-      <Route exact path='/' component={LandingPage} />
-      {/* <NavBar />
+      {/* <Router>
+      <Route exact path='/' component={LandingPage} /> */}
+      <NavBar />
       {ready && (
         <DashboardContainer
           dummyData={dummyData}
@@ -37,8 +48,8 @@ function App() {
           mutationData={aqlData.mutations}
           resolverStats={aqlData.resolverStats}
         />
-      )} */}
-      </Router>
+      )}
+      {/* </Router> */}
     </div>
   );
 }
