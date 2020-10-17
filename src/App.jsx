@@ -19,28 +19,28 @@ function App() {
   const [ready, setReady] = useState(false);
   const [aqlData, setAqlData] = useState({});
   const [userToken, setUserToken] = useState(userTokenCookie);
-
-  // useEffect(() => {
-  //   fetch('/api')
-  //     .then((res) => res.json())
-  //     .then((data) => setAqlData(data))
-  //     .then(() => setReady(true))
-  //     .catch((err) => console.log(err));
-  // }, []);
+  const [userInfo, setUserInfo] = useState({})
   
   useEffect(() => {
-    fetch('/api')
-      .then((res) => res.json())
-      .then((data) => setAqlData(data))
-      .then(() => setReady(true))
-      .catch((err) => console.log(err));
-  }, []);
+    fetch(`/api/user/${userToken}`)
+    .then(res => res.json())
+    .then(res => setUserInfo(res))
+    .catch(err => console.log(err));
+  }, [userTokenCookie]);
+  
+  // useEffect(() => {
+  //   fetch('/api')
+  //     .then(res => res.json())
+  //     .then(data => setAqlData(data))
+  //     .then(() => setReady(true))
+  //     .catch(err => console.log(err));
+  // }, []);
 
   return (
     <div className='App'>
-      {/* <Router>
-      <Route exact path='/' component={LandingPage} /> */}
-      <NavBar />
+      <Router>
+      <Route exact path='/' component={LandingPage} />
+      {/* <NavBar />
       {ready && (
         <DashboardContainer
           dummyData={dummyData}
@@ -48,8 +48,8 @@ function App() {
           mutationData={aqlData.mutations}
           resolverStats={aqlData.resolverStats}
         />
-      )}
-      {/* </Router> */}
+      )} */}
+      </Router>
     </div>
   );
 }

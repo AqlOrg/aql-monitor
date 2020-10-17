@@ -30,20 +30,19 @@ aqlDatabaseController.getAqls = (req, res, next) => {
 aqlDatabaseController.getUserData = (req, res, next) => {
   // want username, avatar url
   // we're going to send on req.body the uuid and want to only receive row for that uuid
-  const userToken = req.body;
+  const { userToken } = req.params;
   const queryString = `
   SELECT 
     username,
     github_id,
     avatar_url
-
-  WHERE user_token = $1
+  FROM users
+  WHERE user_token = $1;
   `
   const tokenQuery = [userToken];
   db.query(queryString, tokenQuery)
-  .then((userData) => {
-    // res.locals.userData = userData
-    console.log(userData)
+  .then(userData => {
+    res.locals.userData = userData.rows[0];
     return next();
   })
 }
