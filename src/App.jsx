@@ -29,7 +29,8 @@ function App() {
   }, [userTokenCookie]);
   
   useEffect(() => {
-    fetch('/api')
+    //only return data for my token
+    fetch(`/api/${userToken}`)
       .then(res => res.json())
       .then(data => setAqlData(data))
       .then(() => setReady(true))
@@ -54,32 +55,6 @@ function App() {
     <Route exact path='/' component={LandingPage} />
   </Router> 
   )
-}
-
-  // if (!userToken) {
-  //   return (
-  //     <Router>
-  //       <Route exact path='/' component={LandingPage} />
-  //     </Router>
-  //   )
-  // }
-  // else {
-  // return (
-  //   <div className='App'>
-  //     {/* <Router>
-  //     <Route exact path='/' component={LandingPage} /> */}
-  //     <NavBar />
-  //     {ready && (
-  //       <DashboardContainer
-  //         dummyData={dummyData}
-  //         data={aqlData}
-  //         mutationData={aqlData.mutations}
-  //         resolverStats={aqlData.resolverStats}
-  //       />
-  //     )}
-  //     {/* </Router> */}
-  //   </div>
-  // );
-  // }
+};
 
 export default App;
