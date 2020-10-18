@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import AqlContainer from './AqlContainer.jsx';
-import { CgAdd, CgCloseO } from 'react-icons/cg'
-import { useSpring, animated } from 'react-spring'
-
+import { CgAdd, CgCloseO } from 'react-icons/cg';
+import { useSpring, animated, interpolate } from 'react-spring';
 
 function MutationRow(props) {
   const [expanded, setExpanded] = useState(false);
@@ -11,16 +10,24 @@ function MutationRow(props) {
   };
   const dateTime = new Date(parseInt(props.data.dateTime));
 
-  // const toggleStyle = useSpring({
+  const spring = useSpring({
+    x: expanded ? 45 : 0,
+    y: expanded ? 1 : 0,
+    config: { tension: 800 },
+  });
 
-  // })
-  const aqlContainerStyle = useSpring({
-    height: expanded ? '100vh' : '0vh',
-    width: '100%'
-  })
+  const AnimatedIcon = animated(CgAdd);
 
   return (
-    <div className='mutation-row'>
+    <div
+      className='mutation-row'
+      style={{
+        color: spring.y.interpolate({
+          range: [0, 1],
+          output: ['snow', 'turquoise'],
+        }),
+      }}
+    >
       <div className='mutation-data'>
         <div>{dateTime.toLocaleDateString()}</div>
         <div>{dateTime.toLocaleTimeString()}</div>
@@ -28,11 +35,19 @@ function MutationRow(props) {
         <div>{props.data.resolver}</div>
         <div>{props.data.expectedAqls}</div>
         <div>{props.data.avgLatency}</div>
-        <button onClick={handleClick}>{expanded ? <CgCloseO style={{ marginTop: '6px', }}></CgCloseO> : <CgAdd style={{ marginTop: '6px' }}></CgAdd>}</button>
+        <button onClick={handleClick}>
+          <AnimatedIcon
+            style={{
+              transform: spring.x.interpolate((x) => `rotate(${x}deg)`),
+              color: spring.y.interpolate({
+                range: [0, 1],
+                output: ['snow', 'turquoise'],
+              }),
+            }}
+          ></AnimatedIcon>
+        </button>
       </div>
-      <animated.div style={aqlContainerStyle}>
-        <AqlContainer data={props.data.aqls} />
-      </animated.div>
+      <AqlContainer data={props.data.aqls} expanded={expanded} />
     </div>
   );
 }
