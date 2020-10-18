@@ -15,28 +15,29 @@ const PieChart = (props) => {
       },
     ],
   };
+
+  const options = {
+    legend: {
+      display: true,
+      position: 'bottom',
+      padding: 0,
+      align: 'center',
+      labels: {
+        boxWidth: 10,
+        fontColor: 'lightgrey',
+      },
+    },
+  };
   return (
-    <div className="PieChart">
-      <Pie
-        data={state}
-        options={{
-          legend: {
-            display: true,
-            position: 'bottom',
-            padding: 0,
-            align: 'center',
-            labels: {
-              boxWidth: 10,
-              fontColor: 'lightgrey',
-            },
-          },
-        }} />
+    <div className='PieChart'>
+      <div className='PieCanvasDiv'>
+        <Pie data={state} options={options} height={180} />
+      </div>
     </div>
   );
 };
 
 export default PieChart;
-
 
 // const Slice = (props) => {
 //   let { pie } = props;
