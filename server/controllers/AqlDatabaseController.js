@@ -8,11 +8,12 @@ const {
 const { query } = require('express');
 const cookieParser = require("cookie-parser");
 
+//Analytics from Aql table 
 aqlDatabaseController.getAqls = (req, res, next) => {
   const userToken = req.headers.cookie;
   //use the mainUserToken to query the database 
-  const mainUserToken = [...userToken].splice(10,[...userToken].length - 1).join('')
-  console.log('TOKENNN', mainUserToken)
+  const mainUserToken = [...userToken].splice(10,[...userToken].length - 1).join('');
+ 
   const tokenQuery = [mainUserToken];
   const queryString = `SELECT * FROM aql WHERE user_token = $1;`;
 
