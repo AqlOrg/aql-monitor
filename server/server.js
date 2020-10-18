@@ -7,13 +7,16 @@ const PORT = 3000;
 const db = require('./model.js');
 const { v4: uuidv4 } = require('uuid');
 const authToken = require('./controllers/authTokenController.js');
+const Cookies = require ('js-cookie');
+const cookieParser = require("cookie-parser");
+
 
 const router = require('./router');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors({ origin: ['http://localhost:8080', 'http://localhost:3000'] }));
-
+app.use(cookieParser());
 app.use(express.static('public'));
 
 app.use('/api', router);
@@ -76,6 +79,7 @@ app.get(
     res.locals.id = req.user.id;
     res.locals.avatar = req.user._json.avatar_url;
     res.cookie('userToken', res.locals.token);
+    // res.cookie('testcookie', 'test');
     res.redirect('/');
   }
 );

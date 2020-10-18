@@ -6,12 +6,16 @@ const {
   mutations,
 } = require('../helperFuncs');
 const { query } = require('express');
-const Cookies = require('js-cookie');
+const cookieParser = require("cookie-parser");
 
 aqlDatabaseController.getAqls = (req, res, next) => {
-  const { userToken } = req.params;
-  const tokenQuery = [userToken];
+  const userToken = req.headers.cookie;
+  //use the mainUserToken to query the database 
+  const mainUserToken = [...userToken].splice(10,[...userToken].length - 1).join('')
+  console.log('TOKENNN', mainUserToken)
+  const tokenQuery = [mainUserToken];
   const queryString = `SELECT * FROM aql WHERE user_token = $1;`;
+
   db.query(queryString, tokenQuery, (err, data) => {
     // If error, console.log
     if (err) console.log('ERROR: ', err);
@@ -34,7 +38,9 @@ aqlDatabaseController.getAqls = (req, res, next) => {
 
 //Querying user data from the database by user_token
 aqlDatabaseController.getUserData = (req, res, next) => {
-  const { userToken } = req.params;
+  const userToken = req.headers.cookie;
+  const mainUserToken = [...userToken].splice(10,[...userToken].length - 1).join('');
+
   const queryString = `
   SELECT 
     username,
@@ -43,7 +49,7 @@ aqlDatabaseController.getUserData = (req, res, next) => {
   FROM users
   WHERE user_token = $1;
   `
-  const tokenQuery = [userToken];
+  const tokenQuery = [mainUserToken];
   db.query(queryString, tokenQuery)
   .then(userData => {
     res.locals.userData = userData.rows[0];

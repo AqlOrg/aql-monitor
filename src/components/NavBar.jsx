@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
+import cookieParser from 'cookie-parser';
 
 function logout() {
-  console.log('this is happening');
   Cookies.remove('userToken', { path: ''})
   window.location.reload(false)
 }

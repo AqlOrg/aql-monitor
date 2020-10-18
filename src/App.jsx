@@ -12,8 +12,10 @@ import dummyData from '../server/sampleDataShape';
 //import landing page
 import LandingPage from '../src/components/LandingPage/landingPage.jsx';
 import Cookies from 'js-cookie';
+// import cookieParser  from 'cookie-parser';
 
 const userTokenCookie = Cookies.get('userToken');
+
 
 function App() {
   const [ready, setReady] = useState(false);
@@ -21,16 +23,17 @@ function App() {
   const [userToken, setUserToken] = useState(userTokenCookie);
   const [userInfo, setUserInfo] = useState({})
   
+  //fetching user data
   useEffect(() => {
-    fetch(`/api/user/${userToken}`)
+    fetch('/api/user')
     .then(res => res.json())
     .then(res => setUserInfo(res))
     .catch(err => console.log(err));
   }, [userTokenCookie]);
   
+  //fetching user analytics
   useEffect(() => {
-    //only return data for my token
-    fetch(`/api/${userToken}`)
+    fetch('/api')
       .then(res => res.json())
       .then(data => setAqlData(data))
       .then(() => setReady(true))
