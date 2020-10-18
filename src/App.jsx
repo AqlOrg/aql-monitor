@@ -3,10 +3,10 @@ import * as d3 from 'd3';
 // COMPONENT IMPORTS
 import NavBar from './components/NavBar.jsx';
 import DashboardContainer from './components/DashboardContainer.jsx';
+import Footer from './components/Footer.jsx';
 // SCSS
 import '../public/scss/application.scss';
-// import new dummy data
-import dummyData from '../server/sampleDataShape';
+
 function App() {
   let [ready, setReady] = useState(false);
   let [aqlData, setAqlData] = useState({});
@@ -18,18 +18,18 @@ function App() {
       .then(() => setReady(true))
       .catch((err) => console.log(err));
   }, []);
-
+  console.log(aqlData);
   return (
     <div className='App'>
       <NavBar />
       {ready && (
         <DashboardContainer
-          dummyData={dummyData}
           data={aqlData}
           mutationData={aqlData.mutations}
           resolverStats={aqlData.resolverStats}
         />
       )}
+      <Footer></Footer>
     </div>
   );
 }
