@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Link, Switch, NavLink } from 'react-router-dom';
-import * as d3 from 'd3';
+
 // COMPONENT IMPORTS
 import NavBar from './components/NavBar.jsx';
 import DashboardContainer from './components/DashboardContainer.jsx';
+import Footer from './components/Footer.jsx';
 // SCSS
 import '../public/scss/application.scss';
 import '../public/scss/landingPage.scss';
@@ -15,9 +16,8 @@ const userTokenCookie = Cookies.get('userToken');
 
 function App() {
   const [userToken, setUserToken] = useState(userTokenCookie);
-
   return (
-    userToken ? 
+    userToken ?
     <div className='App'>
       <NavBar />
       <DashboardContainer/>
@@ -25,7 +25,7 @@ function App() {
     :
     <Router>
     <Route exact path='/' component={LandingPage} />
-  </Router> 
+  </Router>
   )
 };
 

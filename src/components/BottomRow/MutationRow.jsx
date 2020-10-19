@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import AqlContainer from './AqlContainer.jsx';
+import { CgAdd, CgCloseO } from 'react-icons/cg';
+import { useSpring, animated, interpolate } from 'react-spring';
 
 function MutationRow(props) {
   const [expanded, setExpanded] = useState(false);
@@ -7,8 +9,25 @@ function MutationRow(props) {
     setExpanded(!expanded);
   };
   const dateTime = new Date(parseInt(props.data.dateTime));
+
+  const spring = useSpring({
+    x: expanded ? 45 : 0,
+    y: expanded ? 1 : 0,
+    config: { tension: 800 },
+  });
+
+  const AnimatedIcon = animated(CgAdd);
+
   return (
-    <div className='mutation-row'>
+    <div
+      className='mutation-row'
+      style={{
+        color: spring.y.interpolate({
+          range: [0, 1],
+          output: ['snow', 'turquoise'],
+        }),
+      }}
+    >
       <div className='mutation-data'>
         <div>{dateTime.toLocaleDateString()}</div>
         <div>{dateTime.toLocaleTimeString()}</div>
@@ -16,9 +35,19 @@ function MutationRow(props) {
         <div>{props.data.resolver}</div>
         <div>{props.data.expectedAqls}</div>
         <div>{props.data.avgLatency}</div>
-        <button onClick={handleClick}>➕</button>
+        <button onClick={handleClick}>
+          <AnimatedIcon
+            style={{
+              transform: spring.x.interpolate((x) => `rotate(${x}deg)`),
+              color: spring.y.interpolate({
+                range: [0, 1],
+                output: ['snow', 'turquoise'],
+              }),
+            }}
+          ></AnimatedIcon>
+        </button>
       </div>
-      {expanded && <AqlContainer data={props.data.aqls} />}
+      <AqlContainer data={props.data.aqls} expanded={expanded} />
     </div>
   );
 }

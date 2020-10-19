@@ -38,6 +38,7 @@ function DashboardContainer(props) {
           mutationData={aqlData.mutations}
           resolverStats={aqlData.resolverStats}
         />
+        <MiddleRow resolverStats={aqlData.resolverStats} data={aqlData} />
         <BottomRow data={aqlData} />
       </div>
     )
