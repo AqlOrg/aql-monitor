@@ -1,12 +1,8 @@
 const express = require('express');
-const db = require('./model');
 const Router = express.Router();
-const {
-  resolverStats,
-  subscriptionHistory,
-  mutations,
-} = require('./helperFuncs');
+const aqlDatabaseController = require('./controllers/AqlDatabaseController');
 
+<<<<<<< HEAD
 Router.get(
   '/',
   (req, res, next) => {
@@ -32,5 +28,15 @@ Router.get(
     res.status(200).json(res.locals.data);
   }
 );
+=======
+
+Router.get('/', aqlDatabaseController.getAqls, (req, res) => {
+  res.status(200).json(res.locals.data);
+});
+
+Router.get('/user', aqlDatabaseController.getUserData, (req, res) => {
+  res.status(200).send(res.locals.userData);
+});
+>>>>>>> 8af3d7a4b9262f0e9d0deb1712aac495352766d1
 
 module.exports = Router;

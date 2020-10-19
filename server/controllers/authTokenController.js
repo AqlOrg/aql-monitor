@@ -7,7 +7,6 @@ authToken.getToken = (req, res, next) => {
   db.query(tokenQuery, githubId)
   .then((token) => {
     res.locals.token = token.rows[0].user_token;
-    console.log("TOKENNNNN", typeof res.locals.token)
     return next()
   })
 };

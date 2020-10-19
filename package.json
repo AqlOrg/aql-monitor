@@ -22,12 +22,17 @@
   "dependencies": {
     "axios": "^0.20.0",
 <<<<<<< HEAD
+<<<<<<< HEAD
     "chart.js": "^2.9.3",
 =======
 >>>>>>> 8f040613a7cd25658b19e2792b47510fb002c3ff
+=======
+    "cookie-parser": "^1.4.5",
+>>>>>>> 8af3d7a4b9262f0e9d0deb1712aac495352766d1
     "d3": "^6.2.0",
     "express": "^4.17.1",
     "graphql": "^15.3.0",
+    "js-cookie": "^2.2.1",
     "passport": "^0.4.1",
     "passport-github": "^1.1.0",
     "pg": "^8.4.0",
