@@ -8,8 +8,6 @@ const db = require('./model.js');
 const { v4: uuidv4 } = require('uuid');
 const authToken = require('./controllers/authTokenController.js');
 const Cookies = require ('js-cookie');
-const cookieParser = require("cookie-parser");
-
 
 const router = require('./router');
 const traqlRouter = require('./traqlRouter');
@@ -85,8 +83,6 @@ app.get(
     res.redirect('/');
   }
 );
-
-//=================================================================
 
 module.exports = app.listen(PORT, () => {
   console.log('Aql hears you loud and clear on port 3000');
