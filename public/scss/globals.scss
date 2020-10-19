@@ -25,7 +25,14 @@ body {
     margin-left: 25px;
   }
 
-  button {
+  #logoutbutton {
+    color: $secondary-color;
+    background-color: $background-color;
+    margin-right: 20px;
+    border: none;
+  }
+
+  #userbutton {
     border-radius: 50%;
     background-color: $secondary-color;
     border: none;

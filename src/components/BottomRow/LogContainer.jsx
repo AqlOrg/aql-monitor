@@ -10,9 +10,9 @@ function LogContainer(props) {
   }
 
   return (
-    <div id="LogContainer">
+    <div id='LogContainer'>
       <LogHeader data={props.data} />
-      {mutationRows}
+      <div className='mutationRows'>{mutationRows}</div>
     </div>
   );
 }
