@@ -21,14 +21,8 @@
   "homepage": "https://github.com/AqlOrg/aql-monitor#readme",
   "dependencies": {
     "axios": "^0.20.0",
-<<<<<<< HEAD
-<<<<<<< HEAD
     "chart.js": "^2.9.3",
-=======
->>>>>>> 8f040613a7cd25658b19e2792b47510fb002c3ff
-=======
     "cookie-parser": "^1.4.5",
->>>>>>> 8af3d7a4b9262f0e9d0deb1712aac495352766d1
     "d3": "^6.2.0",
     "express": "^4.17.1",
     "graphql": "^15.3.0",
@@ -39,12 +33,9 @@
     "react": "^16.13.1",
     "react-chartjs-2": "^2.10.0",
     "react-dom": "^16.13.1",
-<<<<<<< HEAD
     "react-icons": "^3.11.0",
     "react-spring": "^8.0.27",
-=======
     "react-router-dom": "^5.2.0",
->>>>>>> 8f040613a7cd25658b19e2792b47510fb002c3ff
     "resize-observer-polyfill": "^1.5.1",
     "sass": "^1.26.11",
     "uuid": "^8.3.1"
