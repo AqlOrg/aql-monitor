@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import AqlContainer from './AqlContainer.jsx';
+import { CgAdd, CgCloseO } from 'react-icons/cg'
+import { useSpring, animated } from 'react-spring'
+
 
 function MutationRow(props) {
   const [expanded, setExpanded] = useState(false);
@@ -7,6 +10,15 @@ function MutationRow(props) {
     setExpanded(!expanded);
   };
   const dateTime = new Date(parseInt(props.data.dateTime));
+
+  // const toggleStyle = useSpring({
+
+  // })
+  const aqlContainerStyle = useSpring({
+    height: expanded ? '100vh' : '0vh',
+    width: '100%'
+  })
+
   return (
     <div className='mutation-row'>
       <div className='mutation-data'>
@@ -16,9 +28,11 @@ function MutationRow(props) {
         <div>{props.data.resolver}</div>
         <div>{props.data.expectedAqls}</div>
         <div>{props.data.avgLatency}</div>
-        <button onClick={handleClick}>➕</button>
+        <button onClick={handleClick}>{expanded ? <CgCloseO style={{ marginTop: '6px', }}></CgCloseO> : <CgAdd style={{ marginTop: '6px' }}></CgAdd>}</button>
       </div>
-      {expanded && <AqlContainer data={props.data.aqls} />}
+      <animated.div style={aqlContainerStyle}>
+        <AqlContainer data={props.data.aqls} />
+      </animated.div>
     </div>
   );
 }

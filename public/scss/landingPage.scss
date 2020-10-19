@@ -1,0 +1,27 @@
+@import './variables.scss';
+
+#nav {
+  width: 100%;
+  float: left;
+  margin: 0 0 3em 0;
+  padding: 0; 
+  list-style: none;
+  border-bottom: 1px solid #ccc;
+
+  li {
+    float: left;
+
+    a {
+      display: block;
+      padding: 8px 15px;
+      text-decoration: none;
+      font-weight: bold;
+      color: white;
+    }
+  }
+}
+
+#loginBtn {
+  float: right;
+  margin: 1em 1em 0.5em 0;
+}
