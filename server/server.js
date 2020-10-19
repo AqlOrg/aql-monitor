@@ -79,7 +79,6 @@ app.get(
     res.locals.id = req.user.id;
     res.locals.avatar = req.user._json.avatar_url;
     res.cookie('userToken', res.locals.token);
-    // res.cookie('testcookie', 'test');
     res.redirect('/');
   }
 );

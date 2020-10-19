@@ -5,8 +5,8 @@ const PieChart = (props) => {
 
   let uselessData = [{name:'fds', value: 100}, {name:'fds', value: 150}];
   const moreuseless = [1,2,3,4]
-  let dumData = props.dummyData.resolverStats.map(elt => elt);
-  console.log(dumData);
+  //let dumData = props.dummyData.resolverStats.map(elt => elt);
+  //console.log(dumData);
 
   const ref = useRef();
 
@@ -20,41 +20,41 @@ const PieChart = (props) => {
     .outerRadius(props.outerRadius);
   const colors = d3.interpolateBlues;
 
-  useEffect(() => {
+  // useEffect(() => {
 
-    const data = createPie(dumData);
+  //   const data = createPie(dumData);
 
-    const group = d3.select(ref.current);
-    const groupWithData = group.selectAll('g.arc').data(data);
+  //   const group = d3.select(ref.current);
+  //   const groupWithData = group.selectAll('g.arc').data(data);
 
-    groupWithData
-      .enter()
-      .append('g')
-      .attr('class', 'arc');
+  //   groupWithData
+  //     .enter()
+  //     .append('g')
+  //     .attr('class', 'arc');
 
-    const path = groupWithData
-      .append('path')
-      .merge(groupWithData.select('path.arc'));
+  //   const path = groupWithData
+  //     .append('path')
+  //     .merge(groupWithData.select('path.arc'));
 
-    path
-      .attr('class', 'arc')
-      .attr('d', createArc)
-      .attr('fill', (d, i) => colors(i/(props.resolverStats.length))); 
+  //   path
+  //     .attr('class', 'arc')
+  //     .attr('d', createArc)
+  //     .attr('fill', (d, i) => colors(i/(props.resolverStats.length))); 
 
-    const text = groupWithData
-      .append('text')
-      .merge(groupWithData.select('text'));
+  //   const text = groupWithData
+  //     .append('text')
+  //     .merge(groupWithData.select('text'));
 
-    text
-      .attr('text-anchor', 'middle')
-      .attr('alignment-baseline', 'middle')
-      .attr('transform', (d) => `translate(${createArc.centroid(d)})`)
-      .style('fill', 'black')
-      .style('font-size', '10')
-      .style('font-family', 'Arial')
-      .style('text-align', 'middle')
-      //.text((d) => d.data.name);
-  }, []);
+  //   text
+  //     .attr('text-anchor', 'middle')
+  //     .attr('alignment-baseline', 'middle')
+  //     .attr('transform', (d) => `translate(${createArc.centroid(d)})`)
+  //     .style('fill', 'black')
+  //     .style('font-size', '10')
+  //     .style('font-family', 'Arial')
+  //     .style('text-align', 'middle')
+  //     //.text((d) => d.data.name);
+  // }, []);
 
   return (
     <svg id="PieChart" width={props.width} height={props.height}>

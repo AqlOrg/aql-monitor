@@ -7,7 +7,7 @@ function TopRow(props) {
 
   return (
     <div id="top-row">
-      <PieChartContainer dummyData={props.dummyData} resolverStats={props.resolverStats} id="PieChartContainer" />
+      <PieChartContainer resolverStats={props.resolverStats} id="PieChartContainer" />
       <LineChartContainer mutationData={props.mutationData} id="LineChartContainer" />
     </div>
   );
