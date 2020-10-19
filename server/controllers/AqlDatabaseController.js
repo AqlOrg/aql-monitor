@@ -6,7 +6,6 @@ const {
   mutations,
 } = require('../helperFuncs');
 const { query } = require('express');
-const cookieParser = require("cookie-parser");
 
 //Analytics from Aql table 
 aqlDatabaseController.getAqls = (req, res, next) => {
