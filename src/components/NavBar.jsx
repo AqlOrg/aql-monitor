@@ -53,9 +53,9 @@ function NavBar() {
         <button id="userbutton" onClick={handleDropdown} className="menu-trigger">{userInfo.username.substring(0,1)}</button>
         <nav ref={dropdownRef} className={`dropdown-menu ${isActive ? 'active' : 'inactive'}`}>
           <ul>
-            <li><button id="logoutbutton" className="dropdownbutton" value="/githublogin" onClick={() => logout()}>Logout</button></li>
             <li><button id="readmebutton" className="dropdownbutton">View ReadMe</button></li>
             <li><button id="getuuidbutton" className="dropdownbutton" onClick={() => alert(userToken)}>Get User Token</button></li>
+            <li><button id="logoutbutton" className="dropdownbutton" value="/githublogin" onClick={() => logout()}>Logout</button></li>
           </ul>
         </nav>
       </div>

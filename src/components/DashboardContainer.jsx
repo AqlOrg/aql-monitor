@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import TopRow from './TopRow/TopRow.jsx';
 import MiddleRow from './MiddleRow/MiddleRow.jsx';
 import BottomRow from './BottomRow/BottomRow.jsx';
+import NoData from './NoData.jsx'
 
 function DashboardContainer(props) {
   const [ready, setReady] = useState(false);
@@ -18,7 +19,7 @@ function DashboardContainer(props) {
   }, []);
 
   return (
-    ready && (
+    ready?
       <div id="dashboard-container">
       <TopRow 
         mutationData={aqlData.mutations}
@@ -28,7 +29,8 @@ function DashboardContainer(props) {
         data={aqlData} />
       <BottomRow data={aqlData} />
     </div>
-    )
+    :
+    <NoData/>
   );
 }
 

@@ -40,37 +40,37 @@ body {
     z-index: 9;
   }
 
-  #logoutbutton {
+  #readmebutton {
     border-bottom-right-radius: 0px;
     border-bottom-left-radius: 0px;
     border-bottom: 1px solid $secondary-color;
+  }
+
+  #logoutbutton {
+    border-top-right-radius: 0px;
+    border-top-left-radius: 0px;
+    border-top: 1px solid $secondary-color;
   }
 
   #getuuidbutton {
     border-top-right-radius: 0px;
     border-top-left-radius: 0px;
-    border-top: 1px solid $secondary-color;
-  }
-
-  #readmebutton {
-    border-top-right-radius: 0px;
-    border-top-left-radius: 0px;
     border-bottom-right-radius: 0px;
     border-bottom-left-radius: 0px;
     border-bottom: 1px solid $secondary-color;
     border-top: 1px solid $secondary-color;
   }
 
-  #readmebutton:hover {
+  #getuuidbutton:hover {
     border-bottom: 1px solid $tertiary-color;
     border-top: 1px solid $tertiary-color;
   }
 
-  #logoutbutton:hover {
+  #readmebutton:hover {
     border-bottom: 1px solid $tertiary-color;
   }
 
-  #getuuidbutton:hover {
+  #logoutbutton:hover {
     border-top: 1px solid $tertiary-color;
   }
 
@@ -156,6 +156,21 @@ body {
     background-color: #272d47;
   }
 
+}
+
+.nodata {
+  position: absolute;
+  border: 2px solid $tertiary-color;
+  color: $tertiary-color;
+  background-color: $background-color;
+  top: 40%;
+  left: 50%;
+  border-radius: 15px;
+  width: 30vw;
+  height: 20vw;
+  transform: translate(-15vw, -10vw);
+  text-align: center;
+  padding: 2vw 2vw 2vw 2vw;
 }
 
 // FOOTER STYLES
