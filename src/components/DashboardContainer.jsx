@@ -17,7 +17,7 @@ function DashboardContainer(props) {
   // fetching user data
   useEffect(() => {
     fetch('/api/user')
-    .then(res => res.json())
+    // .then(res => res.json())
     .then(res => setUserInfo(res))
     .catch(err => console.log(err));
   }, [userToken]);
@@ -32,15 +32,17 @@ function DashboardContainer(props) {
   }, []);
 
   return (
-    <div id="dashboard-container">
+    ready && (
+      <div id="dashboard-container">
       <TopRow 
-        mutationData={Object.keys(aqlData).length? aqlData.mutations : []}
+        mutationData={aqlData.mutations}
       />
       <MiddleRow 
-        resolverStats={Object.keys(aqlData).length? aqlData.mutations: []} 
-        data={Object.keys(aqlData).length? aqlData: {}} />
-      <BottomRow data={Object.keys(aqlData).length? aqlData: {}} />
+        resolverStats={aqlData.resolverStats} 
+        data={aqlData} />
+      <BottomRow data={aqlData} />
     </div>
+    )
   );
 }
 

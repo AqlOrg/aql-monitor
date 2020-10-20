@@ -3,7 +3,6 @@ import { Line } from 'react-chartjs-2';
 import moment from 'moment';
 
 function LineChart(props) {
-  if(props.mutationData.length) {
     let [avgLatency, setAvgLatency] = useState(
       props.mutationData.map((elt) => parseInt(elt.avgLatency))
     );
@@ -133,15 +132,11 @@ function LineChart(props) {
       setAvgLatency(newLatency);
       setAvgSubscribers(newSubs);
     };
-  }
-
+  
   return (
-    props.length?
     <div className='LineChart'>
       <Line data={data} width={1000} height={250} options={options}></Line>
     </div>
-    :
-    <div>Nothing to display</div>
   );
 }
 

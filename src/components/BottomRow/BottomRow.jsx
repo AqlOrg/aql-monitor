@@ -5,7 +5,7 @@ import LogContainer from './LogContainer.jsx';
 function BottomRow(props) {
   return (
     <div id="bottom-row">
-      <LogContainer data={props.data.length? props.data: {}} id="LogContainer" />
+      <LogContainer data={props.data} id="LogContainer" />
     </div>
   );
 }
