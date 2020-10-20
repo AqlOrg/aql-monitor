@@ -32,16 +32,15 @@ function DashboardContainer(props) {
   }, []);
 
   return (
-    ready && ( 
-      <div id="dashboard-container">
-        <TopRow 
-          mutationData={aqlData.mutations}
-          resolverStats={aqlData.resolverStats}
-        />
-        <MiddleRow resolverStats={aqlData.resolverStats} data={aqlData} />
-        <BottomRow data={aqlData} />
-      </div>
-    )
+    <div id="dashboard-container">
+      <TopRow 
+        mutationData={Object.keys(aqlData).length? aqlData.mutations : []}
+      />
+      <MiddleRow 
+        resolverStats={Object.keys(aqlData).length? aqlData.mutations: []} 
+        data={Object.keys(aqlData).length? aqlData: {}} />
+      <BottomRow data={Object.keys(aqlData).length? aqlData: {}} />
+    </div>
   );
 }
 
