@@ -8,11 +8,11 @@ import 'react-datepicker/dist/react-datepicker.css';
 // WHERE mutation_received_time BETWEEN $1 AND $2
 // ORDER BY mutation_received_time DESC;
 
-function HeaderRow() {
+function HeaderBar() {
   // Helper function to return obj with UNIX day start and end
   const convertTime = (data) => {
     const rangeObj = {};
-    rangeObj.start = new Date(data.ReactDatePicker).getTime();
+    rangeObj.start = new Date(data.ReactDatepicker).getTime();
     rangeObj.end = rangeObj.start + 86400000;
     return rangeObj;
   };
@@ -20,8 +20,8 @@ function HeaderRow() {
   const { handleSubmit, control } = useForm();
 
   return (
-    <div id="HeaderRow">
-      <span id="projectName">Julie's Dashboard</span>
+    <div id="header-bar">
+      <span id="project-name">Julie's Dashboard</span>
       <div>
         <form onSubmit={handleSubmit((data) => console.log(convertTime(data)))}>
           <Controller
@@ -42,4 +42,4 @@ function HeaderRow() {
   );
 }
 
-export default HeaderRow;
+export default HeaderBar;
