@@ -157,6 +157,50 @@ body {
     border: 1px solid $tertiary-color;
   }
 
+  .token-popup {
+    background-color: $background-color;
+    border: 1px solid $secondary-color;
+    border-radius: 15px;
+    position: absolute;
+    color: $primary-color;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    top: 30px;
+    right: 125px;
+    width: 300px;
+    height: 30px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-20px);
+    transition: 0.5s ease;
+    z-index: 10001 !important;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
+  .token-popup.active {
+    position: fixed;
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    top: 37px;
+    right: 128px;
+    border: 1px solid $secondary-color;
+    border-radius: 12px;
+    z-index: 10001 !important;
+    text-align: center;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
+  .token-popup:hover {
+    border: 1px solid $tertiary-color;
+  }
+
   .menu-trigger {
     background-color: $background-color;
     color: $primary-color;
@@ -179,8 +223,8 @@ body {
   border-radius: 15px;
   width: 24vw;
   min-width: 275px;
-  min-height: 135px;
-  height: 15vw;
+  min-height: 175px;
+  height: 18vw;
   transform: translate(-12vw, -10vw);
   text-align: center;
   padding: 2vw 2vw 2vw 2vw;
@@ -201,6 +245,41 @@ body {
   color: $primary-color;
   border: none;
   outline: none;
+}
+
+.token-display {
+  background-color: $background-color;
+  border: 1px solid $tertiary-color;
+  position: relative;
+  color: $primary-color;
+  border-radius: 12px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  top: 2vw;
+  width: 300px;
+  height: 30px;
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.5s ease;
+  z-index: 10001 !important;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.token-display.active {
+  position: relative;
+  opacity: 1;
+  visibility: visible;
+  border: 2px solid $tertiary-color;
+  border-radius: 12px;
+  z-index: 10001 !important;
+  text-align: center;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
 #readme {
