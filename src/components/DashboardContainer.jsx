@@ -13,6 +13,25 @@ function DashboardContainer(props) {
   const [aqlData, setAqlData] = useState({});
   const [userToken, setUserToken] = useState(userTokenCookie);
   const [userInfo, setUserInfo] = useState({});
+  const [date, setDate] = useState({
+    start: Date.now() - 86400000,
+    end: Date.now(),
+  }); // date {start: 1630430, end: 16434345}
+
+  // Helper function to return obj with UNIX day start and end
+  const convertTime = (data) => {
+    const rangeObj = {};
+    rangeObj.start = new Date(data.ReactDatepicker).getTime();
+    rangeObj.end = rangeObj.start + 86400000;
+    return rangeObj;
+  };
+
+  // Helper function to setDate
+  const handleDateChange = (date) => {
+    // call convert time
+    const converted = convertTime(date);
+    setDate(converted);
+  };
 
   // fetching user data
   useEffect(() => {
@@ -24,20 +43,37 @@ function DashboardContainer(props) {
 
   // fetching user analytics
   useEffect(() => {
-    fetch('/api')
+    const dateFetch = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+      },
+      body: JSON.stringify(date),
+    };
+    fetch('/api', dateFetch)
       .then((res) => res.json())
       .then((data) => setAqlData(data))
       .then(() => setReady(true))
       .catch((err) => console.log(err));
-  }, []);
+  }, [date]);
 
   return (
     ready && (
       <div id="dashboard-container">
-        <HeaderBar />
-        <TopRow mutationData={aqlData.mutations} />
-        <MiddleRow resolverStats={aqlData.resolverStats} data={aqlData} />
-        <BottomRow data={aqlData} />
+        <HeaderBar
+          convertTime={convertTime}
+          handleDateChange={handleDateChange}
+          date={date}
+        />
+        {!aqlData.noDataFound ? (
+          <>
+            <TopRow mutationData={aqlData.mutations} />
+            <MiddleRow resolverStats={aqlData.resolverStats} data={aqlData} />
+            <BottomRow data={aqlData} />
+          </>
+        ) : (
+          <h1>{aqlData.noDataFound}</h1>
+        )}
       </div>
     )
   );
