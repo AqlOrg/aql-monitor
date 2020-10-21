@@ -15,8 +15,7 @@ function ErrorLogContainer(props) {
   return (
     <div id='ErrorLogContainer'>
       <LogHeader data={props.data.length? props.data: ''} />
-      <div className='mutationRows'>{props.length && mutationRows.length ? mutationRows : "no errors to display"}</div>
-      <div>No data to display</div>
+      <div className='mutationRows' style={{color: props.length && mutationRows.length ? "red" : "snow"}}>{props.length && mutationRows.length ? mutationRows : "No errors to display. Congrats on the good app"}</div>
     </div>
 
   );

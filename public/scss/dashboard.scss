@@ -68,11 +68,12 @@
     width: 100%;
     height: 260px;
     padding-top: 20px;
+    padding-bottom: 15px;
 
     #PieChartContainer {
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: start;
       align-items: center;
       width: 40%;
       height: 100%;
@@ -80,13 +81,9 @@
       margin-right: 2rem;
     }
 
-    // .PieCanvasDiv {
-    //   // height: 14rem;
-    //   //width: 28rem;
-    //   width: 100%;
-    //   height: auto;
-    //   position: relative;
-    // }
+    .PieCanvasDiv {
+      padding-top: 1rem;
+    }
 
     // .PieChart {
     //   position: relative;
@@ -106,6 +103,7 @@
       color: red;
       text-align: center;
       overflow: scroll;
+      height: 100%;
       position: relative;
       border: 1px solid snow;
     }
@@ -172,8 +170,11 @@
   }
 
   #box-titles {
+    position: relative;
     display: flex;
     margin-bottom: 0.5rem;
+    margin-top: 0px;
+    top: 0px;
     justify-content: center;
     align-items: center;
     text-align: center;
@@ -204,12 +205,13 @@
     justify-content: space-between;
     align-items: center;
     background-color: #2a2e42;
-    height: 2.5rem;
     z-index: 3;
     width: 1024px;
 
     div {
       flex: 1 1 0;
+      height: 1.8rem;
+      margin-top: 0.7rem;
     }
 
     .wide-data {
@@ -222,7 +224,7 @@
   }
 
   .mutationRows {
-    margin-top: 3rem;
+    margin-top: 2rem;
     width: 100%;
   }
   .mutation-row {

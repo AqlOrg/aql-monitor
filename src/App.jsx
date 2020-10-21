@@ -16,16 +16,17 @@ const userTokenCookie = Cookies.get('userToken');
 
 function App() {
   const [userToken, setUserToken] = useState(userTokenCookie);
+
   return (
     userToken ?
     <div className='App'>
-      <NavBar />
-      <DashboardContainer/>
+      <NavBar userToken={userToken} />
+      <DashboardContainer userToken={userToken} />
     </div>
     :
     <Router>
-    <Route exact path='/' component={LandingPage} />
-  </Router>
+      <Route exact path='/' component={LandingPage} />
+    </Router>
   )
 };
 

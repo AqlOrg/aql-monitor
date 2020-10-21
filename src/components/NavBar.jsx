@@ -6,13 +6,13 @@ function logout() {
   window.location.reload(false)
 }
 
-const userTokenCookie = Cookies.get('userToken');
+// const userTokenCookie = Cookies.get('userToken');
 
-function NavBar() {
+function NavBar(props) {
   const dropdownRef= useRef(null);
   const [ready, setReady] = useState(false);
   const [isActive, setIsActive] = useState(false);
-  const [userToken, setUserToken] = useState(userTokenCookie);
+  //const [userToken, setUserToken] = useState(userTokenCookie);
   const [userInfo, setUserInfo] = useState({})
 
   const handleDropdown = () => setIsActive(!isActive);
@@ -24,7 +24,7 @@ function NavBar() {
     .then(res => setUserInfo(res))
     .then(() => setReady(true))
     .catch(err => console.log(err));
-  }, [userToken]);
+  }, [props.userToken]);
  
   // collapse dropdown menu when clicking away
   useEffect(() => {
@@ -54,7 +54,7 @@ function NavBar() {
         <nav ref={dropdownRef} className={`dropdown-menu ${isActive ? 'active' : 'inactive'}`}>
           <ul>
             <li><button id="readmebutton" className="dropdownbutton">View ReadMe</button></li>
-            <li><button id="getuuidbutton" className="dropdownbutton" onClick={() => alert(userToken)}>Get User Token</button></li>
+            <li><button id="getuuidbutton" className="dropdownbutton" onClick={() => alert(props.userToken)}>Get User Token</button></li>
             <li><button id="logoutbutton" className="dropdownbutton" value="/githublogin" onClick={() => logout()}>Logout</button></li>
           </ul>
         </nav>

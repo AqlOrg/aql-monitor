@@ -7,14 +7,17 @@ body {
 
 // NAVBAR STYLES: LOGO AND USER BUTTON
 #navbar {
+  background-color: $background-color;
+  border-bottom: 1px solid $primary-color;
   display: flex;
   justify-content: space-between;
   align-items: center;
   position: fixed;
   top: 0px;
   width: 100vw;
-  padding-top: 15px;
-  padding-bottom: 15px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  z-index: 10000 !important;
   // border-bottom: 1px solid $secondary-color;
 
   font-family: Georgia, 'Times New Roman', Times, serif;
@@ -37,7 +40,7 @@ body {
     flex: 1;
     padding: 0px;
     border-radius: 15px;
-    z-index: 9;
+    z-index: 10000 !important;
   }
 
   #readmebutton {
@@ -83,7 +86,7 @@ body {
     margin-right: 25px;
     border: none;
     outline: none;
-    z-index: 10;
+    z-index: 10001 !important;
     transition: 0.5s;
     box-sizing: border-box;
   }
@@ -109,7 +112,7 @@ body {
     vertical-align: middle;
     align-items: center;
     transition: 0.5s ease;
-    z-index: 9;
+    z-index: 10001 !important;
   }
 
   .dropdown-menu ul {
@@ -122,24 +125,25 @@ body {
     padding-inline-start: 0px;
     margin-block-start: 0em;
     margin-block-end: 0em;
-    z-index: 9;
+    z-index: 10001 !important;
   }
 
   .menu ul li {
     display: flex;
     box-sizing: border-box;
     border-radius: 15px;
-    z-index: 9;
+    z-index: 10001 !important;
   }
  
   .dropdown-menu.active {
+    position: fixed;
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
     top: 60px;
     border: 1px solid $secondary-color;
     border-radius: 15px;
-    z-index: 9;
+    z-index: 10001 !important;
   }
 
   .dropdown-menu:hover {
@@ -166,11 +170,35 @@ body {
   top: 40%;
   left: 50%;
   border-radius: 15px;
-  width: 30vw;
-  height: 20vw;
-  transform: translate(-15vw, -10vw);
+  width: 24vw;
+  min-width: 275px;
+  min-height: 135px;
+  height: 15vw;
+  transform: translate(-12vw, -10vw);
   text-align: center;
   padding: 2vw 2vw 2vw 2vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
+
+.nodatabutton {
+  margin: none;
+  width: 12vw;
+  min-width: 85px;
+  padding-top: 0.5vw;
+  padding-bottom: 0.5vw;
+  margin-top: 1.5vw;
+  border-radius: 5px;
+  background-color: $secondary-color;
+}
+
+.nodatabutton a {
+  position: relative;
+  text-decoration: none;
+  color: $primary-color;
+}
+
+
 
 // FOOTER STYLES
