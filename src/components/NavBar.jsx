@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import Cookies from 'js-cookie';
+import AqlLogo from '../../public/aqls-site-logo.png';
 
 function logout() {
   Cookies.remove('userToken', { path: ''})
@@ -49,11 +51,11 @@ function NavBar(props) {
   return (
     ready && (
       <div id="navbar">
-        <span id="logo">Aql</span>
+      <Link to="/"><button id="logo"><img src={AqlLogo}></img></button></Link>
         <button id="userbutton" onClick={handleDropdown} className="menu-trigger">{userInfo.username.substring(0,1)}</button>
         <nav ref={dropdownRef} className={`dropdown-menu ${isActive ? 'active' : 'inactive'}`}>
           <ul>
-            <li><button id="readmebutton" className="dropdownbutton">View ReadMe</button></li>
+            <li><Link to="/readme"><button id="readmebutton" className="dropdownbutton" onClick={handleDropdown}>View ReadMe</button></Link></li>
             <li><button id="getuuidbutton" className="dropdownbutton" onClick={() => alert(props.userToken)}>Get User Token</button></li>
             <li><button id="logoutbutton" className="dropdownbutton" value="/githublogin" onClick={() => logout()}>Logout</button></li>
           </ul>

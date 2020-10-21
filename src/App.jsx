@@ -11,6 +11,7 @@ import '../public/scss/landingPage.scss';
 //import landing page
 import LandingPage from '../src/components/LandingPage/landingPage.jsx';
 import Cookies from 'js-cookie';
+import Readme from './components/Readme.jsx';
 
 const userTokenCookie = Cookies.get('userToken');
 
@@ -21,7 +22,12 @@ function App() {
     userToken ?
     <div className='App'>
       <NavBar userToken={userToken} />
-      <DashboardContainer userToken={userToken} />
+      <Switch>
+        <Route path="/readme" component={Readme}></Route>
+        <Route path="/">
+          <DashboardContainer userToken={userToken}/>
+        </Route>
+      </Switch>
     </div>
     :
     <Router>
