@@ -10,7 +10,7 @@ function MiddleRow(props) {
         resolverStats={props.resolverStats}
         id='PieChartContainer'
       />
-      <ErrorLogContainer data={props.data} />
+      <ErrorLogContainer data={props.data.errors} />
     </div>
   );
 }
