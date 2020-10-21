@@ -3,27 +3,18 @@ import { useForm, Controller } from 'react-hook-form';
 import ReactDatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
-// Possible query string
-// SELECT * FROM aql
-// WHERE mutation_received_time BETWEEN $1 AND $2
-// ORDER BY mutation_received_time DESC;
-
-function HeaderBar() {
-  // Helper function to return obj with UNIX day start and end
-  const convertTime = (data) => {
-    const rangeObj = {};
-    rangeObj.start = new Date(data.ReactDatepicker).getTime();
-    rangeObj.end = rangeObj.start + 86400000;
-    return rangeObj;
-  };
-
+function HeaderBar(props) {
   const { handleSubmit, control } = useForm();
 
   return (
     <div id="header-bar">
-      <span id="project-name">Julie's Dashboard</span>
+      <span id="project-name">Dashboard</span>
       <div>
-        <form onSubmit={handleSubmit((data) => console.log(convertTime(data)))}>
+        <form
+          onSubmit={handleSubmit((data) => {
+            props.handleDateChange(data);
+          })}
+        >
           <Controller
             control={control}
             name="ReactDatepicker"
