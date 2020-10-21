@@ -7,14 +7,17 @@ body {
 
 // NAVBAR STYLES: LOGO AND USER BUTTON
 #navbar {
+  background-color: $background-color;
+  border-bottom: 1px solid $primary-color;
   display: flex;
   justify-content: space-between;
   align-items: center;
   position: fixed;
   top: 0px;
   width: 100vw;
-  padding-top: 15px;
-  padding-bottom: 15px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  z-index: 10000 !important;
   // border-bottom: 1px solid $secondary-color;
 
   font-family: Georgia, 'Times New Roman', Times, serif;
@@ -25,14 +28,53 @@ body {
     margin-left: 25px;
   }
 
-  #logoutbutton {
-    position: absolute;
-    transform: translate(-45px, -10px);
+  .dropdownbutton {
+    position: relative;
     color: $primary-color;
     background-color: $background-color;
     border: none;
     border: none;
     outline: none;
+    width: 100%;
+    height: 35px;
+    flex: 1;
+    padding: 0px;
+    border-radius: 15px;
+    z-index: 10000 !important;
+  }
+
+  #readmebutton {
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border-bottom: 1px solid $secondary-color;
+  }
+
+  #logoutbutton {
+    border-top-right-radius: 0px;
+    border-top-left-radius: 0px;
+    border-top: 1px solid $secondary-color;
+  }
+
+  #getuuidbutton {
+    border-top-right-radius: 0px;
+    border-top-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border-bottom: 1px solid $secondary-color;
+    border-top: 1px solid $secondary-color;
+  }
+
+  #getuuidbutton:hover {
+    border-bottom: 1px solid $tertiary-color;
+    border-top: 1px solid $tertiary-color;
+  }
+
+  #readmebutton:hover {
+    border-bottom: 1px solid $tertiary-color;
+  }
+
+  #logoutbutton:hover {
+    border-top: 1px solid $tertiary-color;
   }
 
   #userbutton {
@@ -44,8 +86,9 @@ body {
     margin-right: 25px;
     border: none;
     outline: none;
-    z-index: 10;
+    z-index: 10001 !important;
     transition: 0.5s;
+    box-sizing: border-box;
   }
 
   #userbutton:hover {
@@ -55,12 +98,12 @@ body {
   .dropdown-menu {
     background-color: $background-color;
     border: 1px solid $secondary-color;
-    border-radius: 5px;
+    border-radius: 15px;
     position: absolute;
     top: 60px;
     right: 25px;
-    width: 85px;
-    height: 30px;
+    width: 125px;
+    height: 105px;
     opacity: 0;
     visibility: hidden;
     transform: translateY(-20px);
@@ -69,21 +112,42 @@ body {
     vertical-align: middle;
     align-items: center;
     transition: 0.5s ease;
+    z-index: 10001 !important;
+  }
+
+  .dropdown-menu ul {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    padding-inline-start: 0px;
+    margin-block-start: 0em;
+    margin-block-end: 0em;
+    z-index: 10001 !important;
+  }
+
+  .menu ul li {
+    display: flex;
+    box-sizing: border-box;
+    border-radius: 15px;
+    z-index: 10001 !important;
   }
  
   .dropdown-menu.active {
+    position: fixed;
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
     top: 60px;
+    border: 1px solid $secondary-color;
+    border-radius: 15px;
+    z-index: 10001 !important;
   }
 
   .dropdown-menu:hover {
     border: 1px solid $tertiary-color;
-  }
-  
-  .dropdown-menu ul {
-    list-style: none;
   }
 
   .menu-trigger {
@@ -97,5 +161,44 @@ body {
   }
 
 }
+
+.nodata {
+  position: absolute;
+  border: 2px solid $tertiary-color;
+  color: $tertiary-color;
+  background-color: $background-color;
+  top: 40%;
+  left: 50%;
+  border-radius: 15px;
+  width: 24vw;
+  min-width: 275px;
+  min-height: 135px;
+  height: 15vw;
+  transform: translate(-12vw, -10vw);
+  text-align: center;
+  padding: 2vw 2vw 2vw 2vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.nodatabutton {
+  margin: none;
+  width: 12vw;
+  min-width: 85px;
+  padding-top: 0.5vw;
+  padding-bottom: 0.5vw;
+  margin-top: 1.5vw;
+  border-radius: 5px;
+  background-color: $secondary-color;
+}
+
+.nodatabutton a {
+  position: relative;
+  text-decoration: none;
+  color: $primary-color;
+}
+
+
 
 // FOOTER STYLES

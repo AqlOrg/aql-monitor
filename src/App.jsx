@@ -25,8 +25,8 @@ function App() {
 
   return userToken ? (
     <div className="App">
-      <NavBar />
-      <DashboardContainer />
+      <NavBar userToken={userToken} />
+      <DashboardContainer userToken={userToken} />
     </div>
   ) : (
     <Router>

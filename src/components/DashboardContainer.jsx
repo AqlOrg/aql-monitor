@@ -4,14 +4,12 @@ import HeaderBar from './HeaderBar.jsx';
 import TopRow from './TopRow/TopRow.jsx';
 import MiddleRow from './MiddleRow/MiddleRow.jsx';
 import BottomRow from './BottomRow/BottomRow.jsx';
-import Cookies from 'js-cookie';
-
-const userTokenCookie = Cookies.get('userToken');
+import NoData from './NoData.jsx';
 
 function DashboardContainer(props) {
   const [ready, setReady] = useState(false);
   const [aqlData, setAqlData] = useState({});
-  const [userToken, setUserToken] = useState(userTokenCookie);
+  // const [userToken, setUserToken] = useState(userTokenCookie);
   const [userInfo, setUserInfo] = useState({});
   const [date, setDate] = useState({
     start: Date.now() - 86400000,
@@ -39,7 +37,7 @@ function DashboardContainer(props) {
       // .then((res) => res.json())
       .then((res) => setUserInfo(res))
       .catch((err) => console.log(err));
-  }, [userToken]);
+  }, []);
 
   // fetching user analytics
   useEffect(() => {
@@ -57,6 +55,8 @@ function DashboardContainer(props) {
       .catch((err) => console.log(err));
   }, [date]);
 
+  // console.log('dashboard, ', props.userToken);
+
   return (
     ready && (
       <div id="dashboard-container">
@@ -72,7 +72,7 @@ function DashboardContainer(props) {
             <BottomRow data={aqlData} />
           </>
         ) : (
-          <h1>{aqlData.noDataFound}</h1>
+          <NoData userToken={props.userToken} />
         )}
       </div>
     )
