@@ -55,11 +55,6 @@ function DashboardContainer(props) {
       .catch((err) => console.log(err));
   }, [date]);
 
-<<<<<<< HEAD
-=======
-  // console.log('dashboard, ', props.userToken);
-
->>>>>>> 25cedb191df26fa96aa4d60c016a491555a8e37e
   return (
     ready && (
       <div id="dashboard-container">
