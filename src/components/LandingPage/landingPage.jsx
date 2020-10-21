@@ -35,7 +35,7 @@ function LandingPage() {
           </Router>
         </div>
       </div>
-      <div class="downarrow" onClick={executeScroll}><CgArrowDownO color={"white"} size={32} /></div>
+      <div className="downarrow" onClick={executeScroll}><CgArrowDownO color={"white"} size={32} /></div>
       <div ref={myRef}>
         <LandingContainers />
       </div>
