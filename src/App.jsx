@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Link, Switch, NavLink } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Switch,
+  NavLink,
+} from 'react-router-dom';
 
 // COMPONENT IMPORTS
 import NavBar from './components/NavBar.jsx';
@@ -16,17 +22,17 @@ const userTokenCookie = Cookies.get('userToken');
 
 function App() {
   const [userToken, setUserToken] = useState(userTokenCookie);
-  return (
-    userToken ?
-    <div className='App'>
+
+  return userToken ? (
+    <div className="App">
       <NavBar />
-      <DashboardContainer/>
+      <DashboardContainer />
     </div>
-    :
+  ) : (
     <Router>
-    <Route exact path='/' component={LandingPage} />
-  </Router>
-  )
-};
+      <Route exact path="/" component={LandingPage} />
+    </Router>
+  );
+}
 
 export default App;
