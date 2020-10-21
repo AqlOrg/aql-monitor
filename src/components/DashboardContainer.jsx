@@ -18,8 +18,6 @@ function DashboardContainer(props) {
       .catch(err => console.log(err));
   }, []);
 
-  console.log('dashboard, ', props.userToken);
-
   return (
     ready?
       <div id="dashboard-container">

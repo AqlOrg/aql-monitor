@@ -9,8 +9,6 @@ function logout() {
   window.location.reload(false)
 }
 
-// const userTokenCookie = Cookies.get('userToken');
-
 function NavBar(props) {
   const dropdownRef= useRef(null);
   const [ready, setReady] = useState(false);
