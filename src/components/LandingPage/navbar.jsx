@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Link, Switch, NavLink } from 'react-router-dom';
+// import { BrowserRouter as Router, Link, Switch, NavLink } from 'react-router-dom';
 
 //  const getUserData = async () => {
 //     const response = await fetch('/githublogin');
@@ -13,13 +13,13 @@ function Navbar () {
       <ul id="nav">
         <li><a href="#">Home</a></li>
         <li><a href="#">Team</a></li>
-        <Router forceRefresh={true}>
+        {/*<Router forceRefresh={true}>
           <NavLink to="/githublogin">
-            <button id='loginBtn'>
+            <button id='loginbutton'>
               Signup/Login
             </button>
           </NavLink>
-        </Router>
+        </Router>*/}
       </ul>
     </div>
   )

@@ -10,7 +10,6 @@ function LineChart(props) {
     props.mutationData.map((elt) => parseInt(elt.expectedAqls))
   );
   let times = props.mutationData.map((el) => moment(parseInt(el.dateTime)));
-  console.log(props);
   const data = {
     labels: times,
     datasets: [
@@ -134,7 +133,7 @@ function LineChart(props) {
   };
 
   return (
-    <div className='LineChart'>
+    <div className="LineChart">
       <Line data={data} width={1000} height={250} options={options}></Line>
     </div>
   );
