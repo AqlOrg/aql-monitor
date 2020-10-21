@@ -1,5 +1,19 @@
 @import './variables.scss';
 
+html {
+  scroll-behavior: smooth;
+}
+
+#landing {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  justify-content: space-between;
+  align-items: center;
+  width: 44vw;
+  height: 90vw;
+}
+
 #nav {
   width: 100%;
   float: left;
@@ -22,16 +36,11 @@
 }
 
 #landingdiv {
-  position: absolute;
-  width: 30vw;
-  height: 30vw;
+  width: 41vw;
+  height: 44vw;
   background-color: none;
   display: flex;
   flex-direction: column;
-  top: 40%;
-  left: 50%;
-  margin-top: -15vw;
-  margin-left: -15vw;
   justify-content: space-evenly;
   align-items: center;
 }
@@ -42,39 +51,66 @@
   font-size: 2vw;
 }
 
-#aqlholder {
-  margin-top: 5px;
-  display: flex;
-  background-color: $primary-color;
-  border: none;
-  border-radius: 25%;
-  width: 20vw;
-  height: 20vw;
-  justify-content: center;
-  align-items: center;
+#aqlblue {
+  width: 8vw;
+  height: auto;
 }
 
-#landingAql {
-  position: absolute;
-  width: 50%;
+#browserimage {
+  position: relative;
+  width: 42vw;
+  max-width: 1200px;
+  height: auto;
 }
 
 .buttonholder {
-  width: 105px;
+  width: 25vw;
+  min-width: 210px;
+  justify-content: space-evenly;
+  display: flex;
+
+  button {
+    background-color: $secondary-color;
+    color: $primary-color;
+    border-radius: 5px;
+    width: 10vw;
+    height: 2vw;
+    min-height: 35px;
+    min-width: 100px;
+    border: none;
+    outline: none;
+    font-size: 13px;
+    transition: 0.5s;
+  }
+
+  button:hover {
+    background-color: $hover-color;
+  }
+
 }
 
-#loginbutton {
-  background-color: $secondary-color;
-  color: $primary-color;
-  margin: 1em 1em 0.5em 0;
-  border-radius: 5px;
-  padding: 5px 15px 5px 15px;
-  border: none;
-  outline: none;
-  font-size: 13px;
-  transition: 0.5s;
+.downArrow {
+  width: 36px;
+  height: 36px;
 }
 
-#loginbutton:hover {
-  background-color: $hover-color;
+#landingcontainer {
+  width: 42vw;
+  max-width: 1200px;
+  height: 63vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.landingcontainer {
+  width: 100%;
+  height: 20vh;
+  background-color: $background-color;
+  color: $secondary-color;
+  margin-bottom: 30px;
+  border-radius: 15px;
+  border: 2px solid $secondary-color;
+  font-family: Arial, Helvetica, sans-serif;
 }

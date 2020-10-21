@@ -37,7 +37,6 @@ aqlDatabaseController.getAqls = (req, res, next) => {
       dataObj.mutations = mutationsArr;
       dataObj.errors = errors;
       res.locals.data = dataObj;
-      console.log('dataObj', dataObj);
     } else {
       res.locals.data = { noDataFound: 'No Aqls Found For This Day' };
     }
