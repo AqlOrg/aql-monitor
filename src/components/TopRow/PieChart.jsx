@@ -57,12 +57,15 @@ const PieChart = (props) => {
   // }, []);
 
   return (
+    props.length?
     <svg id="PieChart" width={props.width} height={props.height}>
       <g
         ref={ref}
         transform={`translate(${props.outerRadius} ${props.outerRadius})`}
       />
     </svg>
+    :
+    <div>No data to display</div>
   );
 };
 
