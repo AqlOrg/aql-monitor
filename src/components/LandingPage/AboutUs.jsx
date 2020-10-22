@@ -10,7 +10,7 @@ function AboutUs() {
   const [ourInfo, setOurInfo] = useState([
     {name: 'Case Simmons', github: 'casesimmons', linkedin: 'case-simmons', gitlink: 'https://github.com/casesimmons', linkedlink: 'https://www.linkedin.com/in/case-simmons/', image: Case},
     {name: 'Julie Pinchak', github: 'jpinchak', linkedin: 'julie-pinchak', gitlink: 'https://github.com/jpinchak', linkedlink: 'https://www.linkedin.com/in/julie-pinchak/', image: Julie},
-    {name: 'Michael O\'Halloran', github: 'LordRegis22', linkedin: 'O\'Michael', gitlink: 'https://github.com/LordRegis22', linkedlink: 'https://www.tumblr.com/tagged/lisa-frank', image: Michael},
+    {name: 'Michael O\'Halloran', github: 'LordRegis22', linkedin: 'michael-ohalloran', gitlink: 'https://github.com/LordRegis22', linkedlink: 'https://www.linkedin.com', image: Michael},
     {name: 'Rocio Infante', github: 'Rocio-Infante', linkedin: 'rocio-infante', gitlink: 'https://github.com/Rocio-Infante', linkedlink: 'https://www.linkedin.com/in/rocio-infante', image: Rocio},
   ]);
 

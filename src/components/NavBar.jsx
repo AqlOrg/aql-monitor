@@ -59,7 +59,7 @@ function NavBar(props) {
         <button id="userbutton" onClick={handleDropdown} className="menu-trigger">{userInfo.username.substring(0,1)}</button>
         <nav ref={dropdownRef} className={`dropdown-menu ${isActive ? 'active' : 'inactive'}`}>
           <ul>
-            <li><Link to="/readme"><button id="readmebutton" className="dropdownbutton" onClick={handleDropdown}>View ReadMe</button></Link></li>
+            <li><a href="https://www.npmjs.com/package/@aqls/server"><button id="readmebutton" className="dropdownbutton" onClick={handleDropdown}>View ReadMe</button></a></li>
             <li>
               <button id="getuuidbutton" className="dropdownbutton" onClick={handleTokenPopup}>Get User Token</button>
               <div className={`token-popup ${isTokenActive ? 'active' : 'inactive'}`}>{props.userToken}    <CgCloseO size={18} onClick={()=>setIsTokenActive(false)}/></div>
