@@ -10,11 +10,11 @@ html {
   margin-top: 5vw;
   justify-content: space-between;
   align-items: center;
-  width: 44vw;
-  height: 170vh;
+  width: 72vw;
+  height: 180vh;
   position: relative;
   left: 50%;
-  transform: translateX(-22vw);
+  transform: translateX(-36vw);
 }
 
 #landingdiv {
@@ -34,6 +34,7 @@ html {
 }
 
 #aqlblue {
+  margin-top: 3vw;
   width: 8vw;
   height: auto;
 }
@@ -41,12 +42,14 @@ html {
 #browserimage {
   position: relative;
   width: 42vw;
+  min-width: 500px;
   max-width: 1200px;
   height: auto;
 }
 
 .buttonholder {
   width: 25vw;
+  margin-bottom: 3vw;
   min-width: 210px;
   justify-content: space-evenly;
   display: flex;
@@ -77,13 +80,13 @@ html {
 }
 
 #landingcontainer {
-  width: 42vw;
+  width: 72vw;
   max-width: 1200px;
   height: 80vh;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  align-items: center;
+  align-content: center;
 }
 
 .landingcontainer {
@@ -95,4 +98,92 @@ html {
   border-radius: 15px;
   border: 2px solid $secondary-color;
   font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.containerTitle {
+  flex: 1;
+  background-color: $background-color;
+  border-right: 2px solid $secondary-color;
+  margin: 5px 5px 5px 10px;
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: space-evenly;
+  align-content: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+.containerContent {
+  flex: 4;
+  background-color: $background-color;
+  margin: 5px 5px 5px 5px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+}
+
+.infoIcon {
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 40px;
+}
+
+#sociallinks {
+  margin-top: 5vh;
+  margin-bottom: 5vh;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-around;
+}
+
+#sociallinks a {
+  text-decoration: none;
+  display: flex;
+  justify-content: start;
+}
+
+#sociallinks a:visited {
+  color: $tertiary-color;
+}
+
+#aboutus {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.person {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+#aboutus img {
+  height: 15vh;
+  width: auto;
+  border-radius: 50%;
+}
+
+#aboutus div {
+  font-size: 0.9rem;
+  margin-top: 0.5vh;
+}
+
+#aboutus a {
+  text-decoration: none;
+  color: $secondary-color;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+}
+
+#sociallinks a:visited {
+  color: $secondary-color;
+  font-size: 0.9rem;
 }

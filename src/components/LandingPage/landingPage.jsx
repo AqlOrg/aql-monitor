@@ -29,7 +29,7 @@ function LandingPage() {
           <Router forceRefresh={true}>
             <NavLink to="/readme">
               <button id='download'>
-                Download Aqls Package
+                Download Aqls Packages
               </button>
             </NavLink>
           </Router>
