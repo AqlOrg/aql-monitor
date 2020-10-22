@@ -29,7 +29,7 @@ app.use(passport.initialize());
 passport.use(new GitHubStrategy({
   clientID: process.env.GITHUB_CLIENT_ID, // process.env.GITHUB_CLIENT_ID
   clientSecret: process.env.GITHUB_CLIENT_SECRET, // process.env.GITHUB_CLIENT_SECRET
-  callbackURL: 'http://localhost:8080/auth/github/callback', // callback URL from GitHub
+  callbackURL: 'https://aqls.herokuapp.com/auth/github/callback', // callback URL from GitHub
 },
   // Async callback function: params- tokens, GitHub profile, callback
   async (accessToken, refreshToken, profile, cb) => {

@@ -1,37 +1,29 @@
 @import './variables.scss';
 
-#nav {
-  width: 100%;
-  float: left;
-  margin: 0 0 3em 0;
-  padding: 0; 
-  list-style: none;
-  font-family: Arial, Helvetica, sans-serif;
+html {
+  scroll-behavior: smooth;
+}
 
-  li {
-    float: left;
-
-    a {
-      display: block;
-      padding: 15px 15px;
-      text-decoration: none;
-      font-size: 14px;
-      color: white;
-    }
-  }
+#landing {
+  display: flex;
+  flex-direction: column;
+  margin-top: 5vw;
+  justify-content: space-between;
+  align-items: center;
+  width: 72vw;
+  height: 180vh;
+  position: relative;
+  left: 50%;
+  transform: translateX(-36vw);
+  margin-bottom: 8vh;
 }
 
 #landingdiv {
-  position: absolute;
-  width: 30vw;
-  height: 30vw;
+  width: 41vw;
+  height: 64vh;
   background-color: none;
   display: flex;
   flex-direction: column;
-  top: 40%;
-  left: 50%;
-  margin-top: -15vw;
-  margin-left: -15vw;
   justify-content: space-evenly;
   align-items: center;
 }
@@ -42,39 +34,177 @@
   font-size: 2vw;
 }
 
-#aqlholder {
-  margin-top: 5px;
-  display: flex;
-  background-color: $primary-color;
-  border: none;
-  border-radius: 25%;
-  width: 20vw;
-  height: 20vw;
-  justify-content: center;
-  align-items: center;
+#aqlblue {
+  margin-top: 3vw;
+  width: 7vw;
+  height: auto;
 }
 
-#landingAql {
-  position: absolute;
-  width: 50%;
+#browserimage {
+  position: relative;
+  width: 42vw;
+  min-width: 500px;
+  max-width: 1200px;
+  height: auto;
 }
 
 .buttonholder {
-  width: 105px;
+  width: 36vw;
+  margin-bottom: 3vh;
+  margin-top: 2vh;
+  min-width: 220px;
+  justify-content: space-evenly;
+  display: flex;
+
+  button {
+    background-color: $secondary-color;
+    color: $primary-color;
+    border-radius: 5px;
+    width: 10vw;
+    height: 3vh;
+    min-height: 35px;
+    min-width: 125px;
+    border: none;
+    outline: none;
+    font-size: 0.8rem;
+    transition: 0.5s;
+
+    a {
+      text-decoration: none;
+      color: $primary-color;
+    }
+
+    a:visited {
+      text-decoration: none;
+      color: $primary-color;
+    }
+  }
+
+  button:hover {
+    background-color: $hover-color;
+  }
 }
 
-#loginbutton {
-  background-color: $secondary-color;
+.downArrow {
+  width: 36px;
+  height: 36px;
+}
+
+#landingcontainer {
+  width: 72vw;
+  max-width: 1200px;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-content: center;
+}
+
+.landingcontainer {
+  width: 100%;
+  height: 25vh;
+  background-color: $background-color;
   color: $primary-color;
-  margin: 1em 1em 0.5em 0;
-  border-radius: 5px;
-  padding: 5px 15px 5px 15px;
-  border: none;
-  outline: none;
-  font-size: 13px;
-  transition: 0.5s;
+  margin-bottom: 30px;
+  border-radius: 15px;
+  font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  justify-content: space-evenly;
 }
 
-#loginbutton:hover {
-  background-color: $hover-color;
+.containerTitle {
+  flex: 1;
+  background-color: $background-color;
+  margin: 5px 5px 5px 10px;
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: space-evenly;
+  align-content: center;
+  flex-direction: column;
+  text-align: center;
+  color: $primary-color;
+}
+
+.divider {
+  margin-top: 6vh;
+  margin-left: 3.5vw;
+  width: 2px;
+  height: 12vh;
+  background-color: $secondary-color;
+  border-radius: 10px;
+}
+
+.containerContent {
+  font-size: 1.5rem;
+  flex: 4;
+  background-color: $background-color;
+  margin: 5px 5px 5px 5px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+.infoIcon {
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 40px;
+}
+
+#sociallinks {
+  margin-top: 5vh;
+  margin-bottom: 5vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+#sociallinks a {
+  text-decoration: none;
+  display: flex;
+  justify-content: start;
+}
+
+#sociallinks a:visited {
+  color: $primary-color;
+}
+
+#aboutus {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.person {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+#aboutus img {
+  height: 10vh;
+  width: auto;
+  border-radius: 50%;
+}
+
+#aboutus div {
+  font-size: 0.9rem;
+  margin-top: 0.5vh;
+}
+
+#aboutus a {
+  text-decoration: none;
+  color: $primary-color;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+}
+
+#sociallinks a:visited {
+  color: $primary-color;
+  font-size: 0.9rem;
 }

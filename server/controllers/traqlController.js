@@ -1,4 +1,5 @@
 const db = require('../model.js');
+const { v4: uuidv4 } = require('uuid');
 
 const traqlController = {};
 
@@ -30,12 +31,11 @@ traqlController.addAqlsToTraql = (req, res, next) => {
       // format the query to remove final comma and add semicolon at end
       queryString = queryString.slice(0, -1) + ';';
       }
+      let newId = uuidv4();
       // create error row for db with mutationID and traql stats
-      queryString += `insert into Aql (mutation_id, mutation_received_time, resolver, expected_subscribers, successful_subscribers, error, user_token) values ('${traql.mutationId}', '${traql.openedTime}', '${traql.resolver}', '${traql.expectedNumberOfAqls}', '${traql.aqlsReceivedBack.length}', 'true', '${traql.userToken}');`;
+      queryString += `insert into Aql (id, mutation_id, mutation_received_time, resolver, expected_subscribers, successful_subscribers, error, user_token) values ('${newId}', '${traql.mutationId}', '${traql.openedTime}', '${traql.resolver}', '${traql.expectedNumberOfAqls}', '${traql.aqlsReceivedBack.length}', 'true', '${traql.userToken}');`;
     }
   }
-  console.log('query string');
-  console.log(queryString);
   db.query(queryString, (err, response) => {
     if (err) {
       return next(err);

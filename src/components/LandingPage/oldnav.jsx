@@ -9,19 +9,7 @@ import React from 'react';
 
 function Navbar () {
   return(
-    <div>
-      <ul id="nav">
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Team</a></li>
-        {/*<Router forceRefresh={true}>
-          <NavLink to="/githublogin">
-            <button id='loginbutton'>
-              Signup/Login
-            </button>
-          </NavLink>
-        </Router>*/}
-      </ul>
-    </div>
+    <div></div>
   )
 };
 
