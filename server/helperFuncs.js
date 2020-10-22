@@ -55,7 +55,7 @@ function mutations(data) {
       }
       total = total / array.length;
     }
-    return Math.round(total);
+    return Math.floor(total);
   }
 
   for (let el of data.rows) {
