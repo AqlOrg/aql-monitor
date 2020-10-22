@@ -24,7 +24,7 @@ function ErrorMutationRow(props) {
       style={{
         color: spring.y.interpolate({
           range: [0, 1],
-          output: ['snow', 'turquoise'],
+          output: ['snow', 'red'],
         }),
       }}
     >
@@ -40,7 +40,7 @@ function ErrorMutationRow(props) {
               transform: spring.x.interpolate((x) => `rotate(${x}deg)`),
               color: spring.y.interpolate({
                 range: [0, 1],
-                output: ['snow', 'turquoise'],
+                output: ['snow', 'red'],
               }),
             }}
           ></AnimatedIcon>
