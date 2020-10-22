@@ -36,8 +36,6 @@ traqlController.addAqlsToTraql = (req, res, next) => {
       queryString += `insert into Aql (id, mutation_id, mutation_received_time, resolver, expected_subscribers, successful_subscribers, error, user_token) values ('${newId}', '${traql.mutationId}', '${traql.openedTime}', '${traql.resolver}', '${traql.expectedNumberOfAqls}', '${traql.aqlsReceivedBack.length}', 'true', '${traql.userToken}');`;
     }
   }
-  console.log('query string');
-  console.log(queryString);
   db.query(queryString, (err, response) => {
     if (err) {
       return next(err);

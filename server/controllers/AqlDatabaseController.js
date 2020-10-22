@@ -6,6 +6,7 @@ const {
   mutations,
 } = require('../helperFuncs');
 const { query } = require('express');
+var fs = require('fs');
 
 // set post request for getAqls
 // query will always be select everything AND mutation_received will be greater than and less than
@@ -20,9 +21,9 @@ aqlDatabaseController.getAqls = (req, res, next) => {
     .join('');
   // const tokenQuery = [req.headers.cookie];
   const values = [mainUserToken, req.body.start, req.body.end];
-  console.log('req.body', req.body);
   const queryString = `SELECT * FROM aql WHERE user_token = $1 AND mutation_received_time BETWEEN $2 AND $3;`;
   db.query(queryString, values, (err, data) => {
+
     // If error, console.log
     if (err) console.log('ERROR: ', err);
     // create a dataObj to add shaped data from calling helperFuncs
@@ -37,7 +38,6 @@ aqlDatabaseController.getAqls = (req, res, next) => {
       dataObj.mutations = mutationsArr;
       dataObj.errors = errors;
       res.locals.data = dataObj;
-      console.log('dataObj', dataObj);
     } else {
       res.locals.data = { noDataFound: 'No Aqls Found For This Day' };
     }

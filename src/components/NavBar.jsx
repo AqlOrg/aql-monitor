@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import Cookies from 'js-cookie';
-import AqlLogo from '../../public/aqls-site-logo.png';
+import AqlLogo from '../../public/Alqs-site-logo.svg';
 import { CgCloseO } from 'react-icons/cg';
 
 function logout() {
@@ -55,11 +55,11 @@ function NavBar(props) {
   return (
     ready && (
       <div id="navbar">
-      <Link to="/"><button id="logo"><img src={AqlLogo}></img></button></Link>
+      <Link to="/"><button id="logo"><AqlLogo className="aqllogo" viewBox="5 12 99 40"/></button></Link>
         <button id="userbutton" onClick={handleDropdown} className="menu-trigger">{userInfo.username.substring(0,1)}</button>
         <nav ref={dropdownRef} className={`dropdown-menu ${isActive ? 'active' : 'inactive'}`}>
           <ul>
-            <li><Link to="/readme"><button id="readmebutton" className="dropdownbutton" onClick={handleDropdown}>View ReadMe</button></Link></li>
+            <li><a href="https://www.npmjs.com/package/@aqls/server"><button id="readmebutton" className="dropdownbutton" onClick={handleDropdown}>View ReadMe</button></a></li>
             <li>
               <button id="getuuidbutton" className="dropdownbutton" onClick={handleTokenPopup}>Get User Token</button>
               <div className={`token-popup ${isTokenActive ? 'active' : 'inactive'}`}>{props.userToken}    <CgCloseO size={18} onClick={()=>setIsTokenActive(false)}/></div>
